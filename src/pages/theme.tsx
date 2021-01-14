@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/';
 
 export const useHomeStyles = makeStyles((theme) => ({
   headerWrapper: {
-    background: '#ccc',
+    background:
+      'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
     display: 'flex',
     height: 60,
   },

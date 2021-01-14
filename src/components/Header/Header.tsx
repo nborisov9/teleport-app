@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHomeStyles } from '../../pages/Home/theme';
+import { useHomeStyles } from '../../pages/theme';
 
 import IconInstagram from '@material-ui/icons/Instagram';
 import IconFacebook from '@material-ui/icons/Facebook';
