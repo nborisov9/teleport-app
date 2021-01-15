@@ -22,6 +22,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     fontFamily: 'Mrs Sheppards',
     fontSize: 38,
+
+    '& a': {
+      color: '#000',
+    },
   },
   inputSearch: {
     width: 170,
@@ -35,6 +39,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     '&:active': {
       transform: 'translateY(2px)',
+    },
+
+    '& a': {
+      color: '#000',
     },
   },
 }));

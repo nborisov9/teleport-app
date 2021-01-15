@@ -1,15 +1,10 @@
 import React from 'react';
 
-import { useHomeStyles } from '../../pages/theme';
-
-import IconInstagram from '@material-ui/icons/Instagram';
-import IconFacebook from '@material-ui/icons/Facebook';
-import IconTwitter from '@material-ui/icons/Twitter';
+import { Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import { InputAdornment } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
 
-import { SearchTextField } from '../SearchTextField';
+import { useHomeStyles } from '../../pages/Home/theme';
+import { SearchInput } from '../SearchInput';
 
 export const Header: React.FC = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -18,23 +13,16 @@ export const Header: React.FC = (): React.ReactElement => {
     <div className={classes.headerWrapper}>
       <Container className={classes.headerContainer} maxWidth="lg">
         <div className={classes.headerSearch}>
-          <SearchTextField
-            className={classes.inputSearch}
-            variant="outlined"
-            placeholder="Поиск"
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            fullWidth
-          />
+          <SearchInput placeHolder="поиск" classes={classes} />
         </div>
-        <div className={classes.headerLogo}>Teleport-app</div>
-        <div className={classes.headerAllCitiesLink}>All cities</div>
+
+        <div className={classes.headerLogo}>
+          <Link to="/">Teleport-app</Link>
+        </div>
+
+        <div className={classes.headerAllCitiesLink}>
+          <Link to="/citiesAll">All cities</Link>
+        </div>
       </Container>
     </div>
   );
