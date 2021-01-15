@@ -5,7 +5,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
     display: 'flex',
-    height: 60,
+    padding: '10px 0',
   },
   headerContainer: {
     display: 'flex',
@@ -13,18 +13,28 @@ export const useHomeStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   headerSearch: {
+    flex: '1',
     fontFamily: 'Ubuntu',
   },
-  headerSocialIcons: {
+  headerLogo: {
+    flex: '1',
+    textAlign: 'center',
+    cursor: 'pointer',
+    fontFamily: 'Mrs Sheppards',
+    fontSize: 38,
+  },
+  inputSearch: {
+    width: 170,
+    fontSize: 15,
+  },
+  headerAllCitiesLink: {
+    textAlign: 'right',
+    flex: '1',
+    fontFamily: 'Ubuntu',
+    fontSize: 26,
     cursor: 'pointer',
     '&:active': {
       transform: 'translateY(2px)',
     },
   },
-  headerLogo: {
-    cursor: 'pointer',
-    fontFamily: 'Mrs Sheppards',
-    fontSize: 38,
-  },
-  headerSocial: {},
 }));
