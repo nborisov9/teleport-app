@@ -1,4 +1,10 @@
 import { RootState } from '../store';
-import { CitiesState } from './contracts/state';
+import { ICitiesState } from './types';
 
-export const selectCitiesName = (state: RootState): CitiesState => state.cities;
+export const selectCities = (state: RootState): ICitiesState => state.cities;
+
+export const selectCitiesName = (state: RootState): ICitiesState['items'] =>
+  selectCities(state).items;
+
+export const selectCitiesLoadingState = (state: RootState): ICitiesState['loadingState'] =>
+  selectCities(state).loadingState;

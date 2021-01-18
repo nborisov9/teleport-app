@@ -1,23 +1,15 @@
-import { TweetsActions } from './actionCreators';
-import { CitiesActionsType } from './contracts/ActionTypes';
-import { CitiesState, LoadingState } from './contracts/state';
+import { createReducer } from '@reduxjs/toolkit';
+import { setCities } from './actions';
+import { ICitiesState } from './types';
 
-const initialState: CitiesState = {
+const initialState: ICitiesState = {
   items: [],
-  loadingState: LoadingState.NEVER,
+  loadingState: false,
 };
 
-export const citiesReducer = (state = initialState, action: TweetsActions) => {
-  switch (action.type) {
-    case CitiesActionsType.SET_CITIES: {
-      return {
-        ...state,
-        items: action.payload,
-        loadingState: LoadingState.LOADED,
-      };
-    }
-
-    default:
-      return state;
-  }
-};
+export const citiesReducer = createReducer(initialState, {
+  [setCities.type]: (state, action) => {
+    state.items = action.payload;
+    state.loadingState = true;
+  },
+});

@@ -14,7 +14,8 @@ const App: React.FC = (): React.ReactElement => {
       <Header />
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/citiesAll" component={CitiesAll} />
+        <Route path="/countries" component={Home} />
+        <Route path="/citiesAll" component={CitiesAll} />
       </Switch>
     </Router>
   );

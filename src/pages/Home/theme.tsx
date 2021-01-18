@@ -45,4 +45,73 @@ export const useHomeStyles = makeStyles((theme) => ({
       color: '#000',
     },
   },
+
+  northAmerica: {
+    '&:hover': {
+      '& polygon, path': {
+        transition: 'fill .3s linear',
+        fill: '#90caf9',
+      },
+      stroke: 'black',
+      cursor: 'pointer',
+    },
+  },
+  southAmerica: {
+    '&:hover': {
+      '& polygon, path': {
+        transition: 'fill .3s linear',
+        fill: '#ff7043',
+      },
+      stroke: 'black',
+      cursor: 'pointer',
+    },
+  },
+  asia: {
+    '&:hover': {
+      '& polygon, path': {
+        transition: 'fill .3s linear',
+        fill: '#a5d6a7',
+      },
+      stroke: 'black',
+      cursor: 'pointer',
+    },
+  },
+  europe: {
+    '&:hover': {
+      '& polygon, path': {
+        transition: 'fill .3s linear',
+        fill: '#f4ff81',
+      },
+      stroke: 'black',
+      cursor: 'pointer',
+    },
+  },
+  africa: {
+    '&:hover': {
+      '& polygon, path': {
+        transition: 'fill .3s linear',
+        fill: '#dd2c00',
+      },
+      stroke: 'black',
+      cursor: 'pointer',
+    },
+  },
+  countriesAllContainer: {
+    padding: '30px 0 0 20px',
+  },
+  countriesNames: {
+    fontFamily: 'Ubuntu',
+    fontSize: 24,
+    marginTop: 10,
+    cursor: 'pointer',
+    '&:hover': {
+      fontWeight: 600,
+    },
+  },
+  buttonGoBack: {
+    borderRadius: 20,
+    padding: '5px 30px',
+    marginBottom: 20,
+    background: theme.palette.background.default,
+  },
 }));
