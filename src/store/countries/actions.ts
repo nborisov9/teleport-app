@@ -2,7 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { SET_COUNTRIES } from './types';
+import { CLEAR_COUNTRIES, SET_COUNTRIES } from './types';
 
 export const fetchCountries = (country: string) => (dispatch: Dispatch) => {
   axios
@@ -12,3 +12,5 @@ export const fetchCountries = (country: string) => (dispatch: Dispatch) => {
 };
 
 export const setCountries = createAction(SET_COUNTRIES, (payload) => ({ payload }));
+
+export const clearCountries = createAction(CLEAR_COUNTRIES);

@@ -6,3 +6,5 @@ export interface ICitiesState {
 }
 
 export const SET_CITIES: string = 'cities/SET_CITIES';
+
+export const CLEAR_CITIES: string = 'cities/CLEAR_CITIES';

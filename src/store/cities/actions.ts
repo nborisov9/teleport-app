@@ -2,7 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Dispatch } from 'redux';
 
-import { SET_CITIES } from './types';
+import { CLEAR_CITIES, SET_CITIES } from './types';
 
 export const fetchCities = () => (dispatch: Dispatch) => {
   axios
@@ -12,3 +12,4 @@ export const fetchCities = () => (dispatch: Dispatch) => {
 };
 
 export const setCities = createAction(SET_CITIES, (payload) => ({ payload }));
+export const clearCities = createAction(CLEAR_CITIES);

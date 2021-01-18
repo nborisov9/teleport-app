@@ -21,8 +21,15 @@ export const useCitiesAllStyles = makeStyles((theme) => ({
       transform: 'translateY(2px)',
     },
   },
-  citiesAllLoader: {
-    color: theme.palette.info.main,
-    marginTop: 170,
+  citiesAllButtonWrapper: {
+    margin: '20px 0 0 0',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  citiesAllButtonBack: {
+    borderRadius: 20,
+    padding: '5px 30px',
+    marginBottom: 20,
+    background: theme.palette.background.default,
   },
 }));
