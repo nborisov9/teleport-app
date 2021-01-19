@@ -102,8 +102,9 @@ export const useHomeStyles = makeStyles((theme) => ({
   countriesNames: {
     fontFamily: 'Ubuntu',
     fontSize: 24,
-    marginTop: 10,
+    marginTop: 20,
     cursor: 'pointer',
+    display: 'table',
     '&:hover': {
       fontWeight: 600,
     },
@@ -111,7 +112,12 @@ export const useHomeStyles = makeStyles((theme) => ({
   buttonGoBack: {
     borderRadius: 20,
     padding: '5px 30px',
-    marginBottom: 20,
+    marginBottom: 30,
     background: theme.palette.background.default,
+  },
+  countriesAllTitle: {
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    marginBottom: 15,
   },
 }));
