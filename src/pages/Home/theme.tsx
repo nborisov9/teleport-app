@@ -120,4 +120,50 @@ export const useHomeStyles = makeStyles((theme) => ({
     fontWeight: 600,
     marginBottom: 15,
   },
+  countriesInfoWrapper: {
+    background: '#fff',
+    marginTop: 12,
+    border: '1px solid #ccc',
+    borderRadius: 10,
+    fontFamily: 'Ubuntu',
+    textTransform: 'uppercase',
+    '& div': {
+      borderRight: 'none',
+      borderLeft: 'none',
+      borderBottom: 'none',
+      '&:first-child': {
+        borderTop: 'none',
+      },
+    },
+  },
+  countryInfoName: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    border: '1px solid #ccc',
+    padding: 5,
+    '& span': {
+      display: 'flex',
+      alignItems: 'center',
+      '& svg': {
+        marginRight: 15,
+      },
+    },
+  },
+  countriesInfoTitle: {
+    fontFamily: 'Ubuntu',
+    textTransform: 'uppercase',
+  },
+  countriesInfoIcon: {
+    cursor: 'pointer',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
+  },
+  countriesAllSalaryInfo: {
+    marginTop: 12,
+  },
+  countriesAllJobTitle: {
+    fontWeight: 600,
+  },
 }));

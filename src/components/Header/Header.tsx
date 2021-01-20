@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { useHomeStyles } from '../../pages/Home/theme';
 import { SearchInput } from '../SearchInput';
-import { clearCountries } from '../../store/countries/actions';
+import { clearCountriesName, clearCountryData } from '../../store/countries/actions';
 import { clearCities } from '../../store/cities/actions';
 
 export const Header: React.FC = (): React.ReactElement => {
@@ -15,7 +15,8 @@ export const Header: React.FC = (): React.ReactElement => {
 
   const logoClickHandler = () => {
     dispatch(clearCities());
-    dispatch(clearCountries());
+    dispatch(clearCountriesName());
+    dispatch(clearCountryData());
   };
 
   return (

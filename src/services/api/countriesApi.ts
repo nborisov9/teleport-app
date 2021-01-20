@@ -40,31 +40,3 @@ export const CountriesApi = {
     }
   },
 };
-
-// export const getCountriesBasicInfo = async (countriesName: string) => {
-//   try {
-//     const { data: allCountries } = await axios.get(process.env.REACT_APP_COUNTRIES);
-//     const currentCountyHref = allCountries._links['country:items'].filter(
-//       ({ name }: ILink) => name === countriesName,
-//     );
-
-//     const { data: currentContryBasicInfo } = await axios.get(currentCountyHref[0].href);
-//     return currentContryBasicInfo;
-//   } catch (e) {
-//     throw Error(e);
-//   }
-// };
-
-// export const getCountriesSalariesInfo = async (countriesName: string) => {
-//   try {
-//     const contryData = await getCountriesBasicInfo(countriesName);
-//     const salariesData = await axios.get(contryData._links['country:salaries'].href);
-//     return salariesData;
-//   } catch (e) {
-//     throw Error(e);
-//   }
-// };
-
-// return getCountriesBasicInfo(countriesName)
-// .then((data) => axios.get(data._links['country:salaries'].href))
-// .catch((e) => console.error(e));

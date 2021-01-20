@@ -3,11 +3,23 @@ import { Button, Container, Grid, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { selectCountriesData, selectCountriesLoadingState } from '../../store/countries/selectors';
+import {
+  selectCountriesDataName,
+  selectCountriesLoadingState,
+  selectCountryBasicData,
+  selectCountryDataLoadingState,
+  selectCountrySalaryData,
+} from '../../store/countries/selectors';
 
 import { useHomeStyles } from '../../pages/Home/theme';
-import { clearCountries, fetchCountriesData } from '../../store/countries/actions';
+import {
+  clearCountriesName,
+  clearCountryData,
+  fetchCountriesData,
+} from '../../store/countries/actions';
 import { LoadingBlock } from '../LoadingBlock';
+import { CountryBasicInfo } from '../CountryBasicInfo';
+import { CountrySalaryInfo } from '../CountrySalaryInfo';
 
 interface CountriesAllProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -19,19 +31,33 @@ export const CountriesAll: React.FC<CountriesAllProps> = ({
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const countries = useSelector(selectCountriesData);
+  const countries = useSelector(selectCountriesDataName);
   const loadingState = useSelector(selectCountriesLoadingState);
+  const countriesBasicData = useSelector(selectCountryBasicData);
+  const countriesSalaryData = useSelector(selectCountrySalaryData);
+  const loadingCountryData = useSelector(selectCountryDataLoadingState);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const buttonClickHandler = () => {
     history.goBack();
-    dispatch(clearCountries());
+    dispatch(clearCountryData());
+    dispatch(clearCountriesName());
   };
 
   const countryClickHandler = (countryName: string) => {
+    scrollToTop();
+    dispatch(clearCountryData());
     dispatch(fetchCountriesData(countryName));
   };
 
   if (!countries) {
+    return null;
+  }
+
+  if (!countriesBasicData || !countriesSalaryData) {
     return null;
   }
 
@@ -59,7 +85,14 @@ export const CountriesAll: React.FC<CountriesAllProps> = ({
           )}
         </Grid>
         <Grid item xs>
-          <p>xs</p>
+          {!loadingCountryData ? (
+            <LoadingBlock size={60} />
+          ) : (
+            <>
+              <CountryBasicInfo classes={classes} countriesBasicData={countriesBasicData} />
+              <CountrySalaryInfo classes={classes} countriesSalaryData={countriesSalaryData} />
+            </>
+          )}
         </Grid>
       </Grid>
     </Container>

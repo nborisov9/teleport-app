@@ -4,10 +4,10 @@ import { Dispatch } from 'redux';
 import { CountriesApi } from '../../services/api/countriesApi';
 
 import {
-  CLEAR_COUNTRIES,
+  CLEAR_COUNTRIES_NAME,
   SET_COUNTRY_NAMES,
   SET_COUNTRY_DATA,
-  SET_COUNTRY_SALARY_DATA,
+  CLEAR_COUNTRY_DATA,
 } from './types';
 
 export const fetchCountries = (country: string) => (dispatch: Dispatch) => {
@@ -16,22 +16,27 @@ export const fetchCountries = (country: string) => (dispatch: Dispatch) => {
     .catch((e) => console.error(e));
 };
 
-export const fetchCountriesData = (countryName: string) => (dispatch: Dispatch) => {
-  CountriesApi.getCountriesBasicInfo(countryName)
-    .then((data) => dispatch(setCountryData(data)))
-    .catch((e) => console.error(e));
-
-  CountriesApi.getCountriesSalariesInfo('Cuba').then(({ data }) =>
-    dispatch(setCountrySalaryData(data.salaries)),
-  );
+export const fetchCountriesData = (countryName: string) => async (dispatch: Dispatch) => {
+  try {
+    const basicData = await CountriesApi.getCountriesBasicInfo(countryName);
+    const { data: salaryData } = await CountriesApi.getCountriesSalariesInfo(countryName);
+    dispatch(setCountryData(basicData, salaryData.salaries));
+  } catch (e) {
+    throw Error(e);
+  }
 };
+
+export const clearCountriesName = createAction(CLEAR_COUNTRIES_NAME);
+
+export const clearCountryData = createAction(CLEAR_COUNTRY_DATA);
 
 export const setCountryNames = createAction(SET_COUNTRY_NAMES, (payload) => ({ payload }));
 
-export const setCountryData = createAction(SET_COUNTRY_DATA, (payload) => ({ payload }));
-
-export const setCountrySalaryData = createAction(SET_COUNTRY_SALARY_DATA, (payload) => ({
-  payload,
-}));
-
-export const clearCountries = createAction(CLEAR_COUNTRIES);
+export const setCountryData = createAction(SET_COUNTRY_DATA, (basicData, salaryData) => {
+  return {
+    payload: {
+      basicData,
+      salaryData,
+    },
+  };
+});

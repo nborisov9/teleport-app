@@ -1,10 +1,10 @@
 import { createReducer } from '@reduxjs/toolkit';
 
 import {
-  CLEAR_COUNTRIES,
+  CLEAR_COUNTRIES_NAME,
   SET_COUNTRY_NAMES,
   SET_COUNTRY_DATA,
-  SET_COUNTRY_SALARY_DATA,
+  CLEAR_COUNTRY_DATA,
 } from './types';
 
 const initialState = {
@@ -25,16 +25,20 @@ export const countriesReducer = createReducer(initialState, {
     state.isLoaded = true;
   },
 
-  [CLEAR_COUNTRIES]: (state) => {
+  [CLEAR_COUNTRIES_NAME]: (state) => {
     state.items.countries = [];
     state.isLoaded = false;
   },
 
   [SET_COUNTRY_DATA]: (state, action) => {
-    state.items.countryData.basicData = { ...action.payload };
+    state.items.countryData.basicData = action.payload.basicData;
+    state.items.countryData.salaryData = action.payload.salaryData.slice(0, 10);
+    state.items.countryData.isLoaded = true;
   },
 
-  [SET_COUNTRY_SALARY_DATA]: (state, action) => {
-    state.items.countryData.salaryData = action.payload;
+  [CLEAR_COUNTRY_DATA]: (state) => {
+    state.items.countryData.basicData = {};
+    state.items.countryData.salaryData = [];
+    state.items.countryData.isLoaded = false;
   },
 });
