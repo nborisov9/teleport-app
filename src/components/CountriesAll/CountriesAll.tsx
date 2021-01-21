@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Container, Grid, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import IconArrowLeft from '@material-ui/icons/ArrowBack';
 
 import {
   selectCountriesDataName,
@@ -15,21 +16,26 @@ import { useHomeStyles } from '../../pages/Home/theme';
 import {
   clearCountriesName,
   clearCountryData,
+  fetchCountries,
   fetchCountriesData,
 } from '../../store/countries/actions';
 import { LoadingBlock } from '../LoadingBlock';
 import { CountryBasicInfo } from '../CountryBasicInfo';
 import { CountrySalaryInfo } from '../CountrySalaryInfo';
 
-interface CountriesAllProps {
-  classes: ReturnType<typeof useHomeStyles>;
-}
+export const CountriesAll: React.FC = (): React.ReactElement | null => {
+  const [viewCountryData, setViewCountryData] = React.useState<boolean>(false);
 
-export const CountriesAll: React.FC<CountriesAllProps> = ({
-  classes,
-}): React.ReactElement | null => {
+  const classes = useHomeStyles();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const historyPathname = history.location.pathname;
+  const continentName = historyPathname.slice(11, 13);
+
+  React.useEffect(() => {
+    dispatch(fetchCountries(continentName));
+  }, [dispatch, continentName]);
 
   const countries = useSelector(selectCountriesDataName);
   const loadingState = useSelector(selectCountriesLoadingState);
@@ -42,13 +48,14 @@ export const CountriesAll: React.FC<CountriesAllProps> = ({
   };
 
   const buttonClickHandler = () => {
-    history.goBack();
+    history.push('/');
     dispatch(clearCountryData());
     dispatch(clearCountriesName());
   };
 
   const countryClickHandler = (countryName: string) => {
     scrollToTop();
+    setViewCountryData(true);
     dispatch(clearCountryData());
     dispatch(fetchCountriesData(countryName));
   };
@@ -69,7 +76,7 @@ export const CountriesAll: React.FC<CountriesAllProps> = ({
             go back
           </Button>
           <Typography variant="h5" className={classes.countriesAllTitle}>
-            countries
+            countries - {continentName}
           </Typography>
           {!loadingState ? (
             <LoadingBlock size={60} />
@@ -79,19 +86,29 @@ export const CountriesAll: React.FC<CountriesAllProps> = ({
                 className={classes.countriesNames}
                 key={index + name}
                 onClick={() => countryClickHandler(name)}>
-                {name}
+                <NavLink
+                  activeStyle={{ fontWeight: 600 }}
+                  to={`/countries/${continentName}/${name}`}>
+                  {name}
+                </NavLink>
               </div>
             ))
           )}
         </Grid>
         <Grid item xs>
-          {!loadingCountryData ? (
-            <LoadingBlock size={60} />
+          {viewCountryData ? (
+            !loadingCountryData ? (
+              <LoadingBlock size={60} />
+            ) : (
+              <>
+                <CountryBasicInfo classes={classes} countriesBasicData={countriesBasicData} />
+                <CountrySalaryInfo classes={classes} countriesSalaryData={countriesSalaryData} />
+              </>
+            )
           ) : (
-            <>
-              <CountryBasicInfo classes={classes} countriesBasicData={countriesBasicData} />
-              <CountrySalaryInfo classes={classes} countriesSalaryData={countriesSalaryData} />
-            </>
+            <Typography variant="h5" className={classes.countriesAllSelectTitle}>
+              <IconArrowLeft /> select country
+            </Typography>
           )}
         </Grid>
       </Grid>

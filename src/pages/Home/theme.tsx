@@ -45,7 +45,20 @@ export const useHomeStyles = makeStyles((theme) => ({
       color: '#000',
     },
   },
-
+  worldMapTitle: {
+    marginTop: 40,
+    display: 'flex',
+    justifyContent: 'center',
+    fontFamily: 'Ubuntu',
+    textTransform: 'uppercase',
+    letterSpacing: '3px',
+    color: 'rgba(29, 29, 29, 0.8)',
+  },
+  worldMapWrapper: {
+    marginTop: 25,
+    display: 'flex',
+    justifyContent: 'center',
+  },
   northAmerica: {
     '&:hover': {
       '& polygon, path': {
@@ -100,13 +113,16 @@ export const useHomeStyles = makeStyles((theme) => ({
     padding: '30px 0 0 20px',
   },
   countriesNames: {
-    fontFamily: 'Ubuntu',
-    fontSize: 24,
-    marginTop: 20,
-    cursor: 'pointer',
-    display: 'table',
-    '&:hover': {
-      fontWeight: 600,
+    '& a': {
+      color: '#000',
+      fontFamily: 'Ubuntu',
+      fontSize: 25,
+      marginTop: 20,
+      cursor: 'pointer',
+      display: 'table',
+      '&:hover': {
+        fontWeight: 600,
+      },
     },
   },
   buttonGoBack: {
@@ -120,6 +136,30 @@ export const useHomeStyles = makeStyles((theme) => ({
     fontWeight: 600,
     marginBottom: 15,
   },
+  countriesAllSelectTitle: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textTransform: 'uppercase',
+    marginTop: 70,
+    '& svg': {
+      marginRight: 15,
+      animation: '$arrowOffset 1s ease-in-out infinite',
+    },
+  },
+
+  '@keyframes arrowOffset': {
+    '0%': {
+      transform: 'translateX(0px)',
+    },
+    '50%': {
+      transform: 'translateX(-10px)',
+    },
+    '100%': {
+      transform: 'translateX(0px)',
+    },
+  },
+
   countriesInfoWrapper: {
     background: '#fff',
     marginTop: 12,

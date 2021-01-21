@@ -49,16 +49,24 @@ export const CountrySalaryInfo: React.FC<CountrySalaryInfoProps> = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {countriesSalaryData.map(({ job, salary_percentiles }: any, idx: number) => (
-              <TableRow key={job.title + idx}>
-                <TableCell component="th" scope="row">
-                  {job.title}
-                </TableCell>
-                <TableCell align="right">{Math.round(salary_percentiles.percentile_25)}</TableCell>
-                <TableCell align="right">{Math.round(salary_percentiles.percentile_50)}</TableCell>
-                <TableCell align="right">{Math.round(salary_percentiles.percentile_75)}</TableCell>
-              </TableRow>
-            ))}
+            {countriesSalaryData.map(
+              ({ job, salary_percentiles }: ICountrySalaryData, idx: number) => (
+                <TableRow key={job.title + idx}>
+                  <TableCell component="th" scope="row">
+                    {job.title}
+                  </TableCell>
+                  <TableCell align="right">
+                    {Math.round(salary_percentiles.percentile_25)}
+                  </TableCell>
+                  <TableCell align="right">
+                    {Math.round(salary_percentiles.percentile_50)}
+                  </TableCell>
+                  <TableCell align="right">
+                    {Math.round(salary_percentiles.percentile_75)}
+                  </TableCell>
+                </TableRow>
+              ),
+            )}
           </TableBody>
         </Table>
       </TableContainer>

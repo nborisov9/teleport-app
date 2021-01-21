@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
@@ -16,6 +16,7 @@ const App: React.FC = (): React.ReactElement => {
         <Route exact path="/" component={Home} />
         <Route path="/countries" component={Home} />
         <Route path="/citiesAll" component={CitiesAll} />
+        <Redirect to="/" />
       </Switch>
     </Router>
   );

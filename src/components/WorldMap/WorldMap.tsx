@@ -1,222 +1,254 @@
 import React from 'react';
+import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+
 import { useHomeStyles } from '../../pages/Home/theme';
 
 interface WorldMapProps {
   classes: ReturnType<typeof useHomeStyles>;
-  onClickContient: (continent: string) => void;
 }
 
 export const WorldMap: React.FC<WorldMapProps> = ({
   classes,
-  onClickContient,
 }: WorldMapProps): React.ReactElement => {
+  const [continentTitle, setContintentTitle] = React.useState<string>('select contintent');
+
+  const NARef = React.useRef<any>(null);
+  const SARef = React.useRef<any>(null);
+  const ASRef = React.useRef<any>(null);
+  const EURef = React.useRef<any>(null);
+  const AFRef = React.useRef<any>(null);
+
+  const handleMouseOver = (event: MouseEvent) => {
+    const path = event.composedPath();
+    if (path.includes(NARef.current)) {
+      setContintentTitle('NORTH AMERICA');
+    } else if (path.includes(SARef.current)) {
+      setContintentTitle('SORTH AMERICA');
+    } else if (path.includes(ASRef.current)) {
+      setContintentTitle('ASIA');
+    } else if (path.includes(EURef.current)) {
+      setContintentTitle('EUROPE');
+    } else if (path.includes(AFRef.current)) {
+      setContintentTitle('AFRICA');
+    }
+  };
+
+  React.useEffect(() => {
+    document.body.addEventListener('mouseover', handleMouseOver);
+    return () => document.body.removeEventListener('mouseover', handleMouseOver);
+  }, []);
+
   return (
-    <div style={{ marginTop: 100, display: 'flex', justifyContent: 'center' }}>
-      <svg
-        id="world"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="32.3 44.8 897.1 455.3"
-        height="500">
-        <g id="outline" data-name="outline">
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="255.8,99.6 256.9,96.7 250.1,93.8 244.5,98.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="239.3,250 240.4,248.1 237.3,248.1 236.2,250 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="261.8,495.3 266.1,499.2 279.2,499.6 265.1,492.2 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="108.7,142.9 103.6,138.8 101.3,140.8 105,145.4 108.7,145.4 
+    <>
+      <Typography variant="h5" className={classes.worldMapTitle}>
+        {continentTitle}
+      </Typography>
+      <div className={classes.worldMapWrapper}>
+        <svg
+          id="world"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="32.3 44.8 897.1 455.3"
+          height="500">
+          <g id="outline" data-name="outline">
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="255.8,99.6 256.9,96.7 250.1,93.8 244.5,98.5 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="239.3,250 240.4,248.1 237.3,248.1 236.2,250 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="261.8,495.3 266.1,499.2 279.2,499.6 265.1,492.2 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="108.7,142.9 103.6,138.8 101.3,140.8 105,145.4 108.7,145.4 
 			"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="200.1,232.2 191.5,232.2 188.2,235.3 197.7,235.3 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="200.1,232.2 191.5,232.2 188.2,235.3 197.7,235.3 
 		205.5,240.5 202.6,243.8 216,243.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="226.7,247.3 231.7,247.3 232.9,245.6 223.6,244.6 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="226.7,247.3 231.7,247.3 232.9,245.6 223.6,244.6 
 		217.5,244.6 219.5,247.3 216,247.3 216,248.5 223.6,248.5 223.6,249.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="201.6,249.8 203.8,251.4 209.4,251.4 209.4,249.4 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="201.6,249.8 203.8,251.4 209.4,251.4 209.4,249.4 
 		207.4,247.3 201.6,247.3 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="841.6,197.2 844.5,200.5 846.7,196.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="831.1,346.5 834.6,346.9 837.9,343.9 844,343.2 844,341 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="841.6,197.2 844.5,200.5 846.7,196.5 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="831.1,346.5 834.6,346.9 837.9,343.9 844,343.2 844,341 
 		835.8,341 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="847.8,306.9 850,304.2 848.6,302.4 845.9,305.1 844.9,311.9 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="847.8,306.9 850,304.2 848.6,302.4 845.9,305.1 844.9,311.9 
 		848.6,312.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="821.8,340.1 822.6,343.2 827.3,343.2 829.2,341.6 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="821.8,340.1 822.6,343.2 827.3,343.2 829.2,341.6 
 		826.7,340.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="169.8,250.6 165.1,250.6 165.9,256.6 160.5,256.6 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="169.8,250.6 165.1,250.6 165.9,256.6 160.5,256.6 
 		157.8,261.1 165.5,265 170.8,255.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="845.9,324.3 854,323.6 854,321.4 846.7,321.4 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="185.7,275.6 185.3,257.4 169.8,257.4 167.3,262 165.5,265 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="845.9,324.3 854,323.6 854,321.4 846.7,321.4 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="185.7,275.6 185.3,257.4 169.8,257.4 167.3,262 165.5,265 
 		171,267.5 172.5,268.1 177.4,274.9 183,282.4 184.9,283 187.8,279.3 185.9,278.4 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="865.9,314.4 857.1,315.8 867,320.3 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="832.7,315.2 825.3,315.6 823.8,313.5 826.7,310.4 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="865.9,314.4 857.1,315.8 867,320.3 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="832.7,315.2 825.3,315.6 823.8,313.5 826.7,310.4 
 		832.1,312.1 834.8,311.9 838.7,307.3 835.2,307.1 833.1,308.6 825.5,306.9 820.5,311.3 820.9,318.3 818,322.2 819.9,331.5 
 		823.4,330.4 822.2,324 824.4,321.6 826.3,326.5 830.6,327.8 830.6,324.5 828,319.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="282.4,52.9 279.1,50.3 269.4,54.4 277.7,56 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="256.9,71.3 255,68.6 246.1,70.7 247,74 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="288,63.9 271.5,63.9 266.1,61.6 260.8,66.1 282.4,67.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="304.3,149.5 300.6,143.3 297.1,142.5 297.1,138.2 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="282.4,52.9 279.1,50.3 269.4,54.4 277.7,56 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="256.9,71.3 255,68.6 246.1,70.7 247,74 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="288,63.9 271.5,63.9 266.1,61.6 260.8,66.1 282.4,67.8 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="304.3,149.5 300.6,143.3 297.1,142.5 297.1,138.2 
 		297.1,138.2 297.1,138.2 286,149.5 286,149.5 286,149.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="294,100.4 294,91.3 301,93.8 305.1,91.1 302.7,86.8 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="294,100.4 294,91.3 301,93.8 305.1,91.1 302.7,86.8 
 		298.7,85.5 298.5,79.1 276.1,69.7 272.8,69.7 265.1,76.1 267.6,69.7 263.9,69.7 254.8,79.4 276.9,78.1 290.3,90.1 281.2,90.1 
 		276.7,93.8 266.4,93.8 266.4,96.7 276.9,96.7 285.7,104.1 288,102.9 286,98.3 292.1,101.2 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="441.9,129.7 438.6,131.4 441.5,135.7 435.5,141.3 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="441.9,129.7 438.6,131.4 441.5,135.7 435.5,141.3 
 		443.2,139.8 451.2,138.6 451.6,135.7 453.3,135.7 453.7,132.4 448.5,131.4 442.1,116.7 437.2,116.7 437.2,124.5 441.7,124.9 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="424,129.1 424,137.7 427.3,137.7 427.3,134.7 433.5,135.5 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="424,129.1 424,137.7 427.3,137.7 427.3,134.7 433.5,135.5 
 		433.1,129.3 435.5,128.3 435.5,125.2 429.8,124.9 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="285.8,59.8 274.4,59.8 276.1,61.6 288.8,61.6 290.7,63.3 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="285.8,59.8 274.4,59.8 276.1,61.6 288.8,61.6 290.7,63.3 
 		309.1,54.8 324.1,51.7 335.3,45.5 290.5,48.8 290.5,51.1 305.6,50.7 303.5,53.6 288,54 289.9,57.5 283.3,56.3 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="242.8,73.8 244.7,68.6 232.1,72.7 235.4,76.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="915.8,335.2 922.4,331.5 922.4,327.6 911.7,332.9 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="920.2,321.8 917.1,322 925.1,327.6 928.2,326.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="906.8,331.9 887.6,321.8 878.9,317.4 870.9,324 862.4,320.5 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="242.8,73.8 244.7,68.6 232.1,72.7 235.4,76.1 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="915.8,335.2 922.4,331.5 922.4,327.6 911.7,332.9 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="920.2,321.8 917.1,322 925.1,327.6 928.2,326.5 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="906.8,331.9 887.6,321.8 878.9,317.4 870.9,324 862.4,320.5 
 		861.4,325.3 866.5,325.1 878.9,330.2 881,336.6 876.9,339.1 887.6,342.8 891.5,344.1 898.9,337.3 908.4,346.7 917.1,348.4 
 		906.4,337.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="235.4,82 233.8,79.4 228,82 230.2,84.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="165.9,256.6 165.1,250.6 169.8,250.6 175.8,245.9 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="235.4,82 233.8,79.4 228,82 230.2,84.7 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="165.9,256.6 165.1,250.6 169.8,250.6 175.8,245.9 
 		176.2,239.3 169.4,239.3 164.2,247.9 149.6,247.9 142.4,232.7 148.5,225.2 141.1,210.8 148.5,225.2 162,208.1 194.6,208.1 
 		196.8,224.4 202,224.6 202,204.4 254.8,159.2 258.5,158.6 260.4,152.2 260.4,152.2 258.5,158.6 268.4,156.9 261.8,160 262.4,162.7 
 		280.2,156.5 271.5,156.1 267.6,152.4 271.5,146.2 269.5,144.3 256.9,150.1 256.9,146.8 269,141 288.4,140.2 302.9,132.4 
@@ -227,89 +259,89 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		33.8,123.1 39,123.5 66.9,110.1 99.2,108.9 109.1,118.8 112.7,114.8 109.4,111.5 109.4,111.5 112.7,114.8 109.1,118.8 105.2,135.9 
 		112,142.1 112,145.4 112,145.4 87.1,171.4 87.1,191.6 96.3,200.7 96.3,200.7 96.3,200.7 97.6,214.9 107.3,233.3 111.4,230.4 
 		103.6,213.9 103.6,204.8 108.3,204.8 108.5,213.3 123,247.5 146.7,257.4 152.5,255.8 157.8,261.1 160.5,256.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="199.1,76.9 189.4,79.4 201.4,84.1 209.8,80.4 219.1,82.7 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="199.1,76.9 189.4,79.4 201.4,84.1 209.8,80.4 219.1,82.7 
 		225.9,81.2 219.1,77.9 224.3,71.3 219.1,71.3 216,75.4 214.8,71.3 209.2,73.4 203.6,70.7 192.9,74.4 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="201,69.5 196.4,67.4 178,72.1 181.4,76.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="175.8,245.9 169.8,250.6 170.8,255.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="821.2,166.8 809,175.3 812.7,182.1 817.4,183.5 822.4,194.3 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="201,69.5 196.4,67.4 178,72.1 181.4,76.1 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="175.8,245.9 169.8,250.6 170.8,255.6 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="821.2,166.8 809,175.3 812.7,182.1 817.4,183.5 822.4,194.3 
 		828.4,193.9 829.4,186.9 821.1,180 817.4,177.1 822.2,176.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="838.7,278.4 836.4,284.2 828.8,284.2 835,288.6 835,293.1 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="838.7,278.4 836.4,284.2 828.8,284.2 835,288.6 835,293.1 
 		839.7,291.7 838.1,288.8 841.8,287.9 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="817.2,235.9 819.7,228.7 817.2,226 813.1,232 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="481.3,121.4 479.1,122.1 478.5,125.2 482.4,125.2 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="817.2,235.9 819.7,228.7 817.2,226 813.1,232 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="481.3,121.4 479.1,122.1 478.5,125.2 482.4,125.2 
 		483.6,123.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="603.7,227.9 605.5,226.1 602.4,221.9 601,226.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="831.3,275.4 833.9,279.3 835.2,277.4 833.5,274.3 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="840.1,274.9 836.8,269.6 833.5,271 836.6,274.9 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="814.5,282.4 819.7,277.8 819.7,274.1 811.4,281.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="831.9,267.7 833.1,264.6 826.1,263.8 823.6,260.7 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="603.7,227.9 605.5,226.1 602.4,221.9 601,226.1 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="831.3,275.4 833.9,279.3 835.2,277.4 833.5,274.3 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="840.1,274.9 836.8,269.6 833.5,271 836.6,274.9 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="814.5,282.4 819.7,277.8 819.7,274.1 811.4,281.6 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="831.9,267.7 833.1,264.6 826.1,263.8 823.6,260.7 
 		826.1,254.9 823.6,249.4 819.1,249.2 818,258.9 824.4,266.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="750,259.7 752.6,269 752,278.7 751.8,282.6 758.6,288.4 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="750,259.7 752.6,269 752,278.7 751.8,282.6 758.6,288.4 
 		759.3,290.6 763.4,290 756.8,280.1 758.4,265 765.7,272.3 765.7,272.3 769.6,276 773.7,275.4 773.9,282.2 785.9,274.3 785.5,262.6 
 		772.9,249.2 773.7,242.1 778.2,239.5 778.2,239.5 782.2,237.2 782.2,241.3 806.5,232.6 814.5,214.9 800.3,191.6 807.7,183.7 
 		799.3,183.7 796.6,185.4 791.4,176.9 798,171 802.6,179.8 809,175.3 821.2,166.8 830.4,165.2 835,158 835,144.6 821.2,129.1 
@@ -334,44 +366,44 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		593,208.5 593.2,208.9 597.7,209.3 608.4,220.3 628,226.1 633.4,226.1 650.5,226.1 654.9,231.4 655.7,232.2 661.7,234.1 659,237 
 		661.7,240.5 666.6,241.1 667.4,237 669.3,237 685.2,282.4 695.1,276.2 696.7,258 719.6,236 719.6,236 722.1,233.7 732.8,242.6 
 		737.6,246.7 739.6,256.6 743,257.6 745.4,254.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="476,165.8 473.3,165.8 473.3,169.1 475.1,169.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="485.9,191.6 490.8,192.8 490.8,188.7 485.9,188.5 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="541.4,192.8 546.5,194.1 548.4,190.2 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="491.2,181.7 483.8,181.7 483.8,183.7 486.5,185.6 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="476,165.8 473.3,165.8 473.3,169.1 475.1,169.7 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="485.9,191.6 490.8,192.8 490.8,188.7 485.9,188.5 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="541.4,192.8 546.5,194.1 548.4,190.2 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="491.2,181.7 483.8,181.7 483.8,183.7 486.5,185.6 
 		491.2,186.4 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="471.6,178.8 475.1,178.8 475.1,172.2 471.6,171.2 	"
-          />
-          <path fill="none" stroke="#2D2D2D" strokeMiterlimit="10" d="M488.6,272.5" />
-          <polyline
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="472.3,296.8 475.4,296.8 475.2,303.8 475.2,303.8 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="471.6,178.8 475.1,178.8 475.1,172.2 471.6,171.2 	"
+            />
+            <path fill="none" stroke="#2D2D2D" strokeMiterlimit="10" d="M488.6,272.5" />
+            <polyline
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="472.3,296.8 475.4,296.8 475.2,303.8 475.2,303.8 
 		475.2,309 475.1,317.4 482,326.7 485.5,331.5 494.3,327.6 485.5,331.5 487.5,334 487.5,356.7 481.6,366.5 482.2,372.7 495,408.8 
 		495,408.8 502.6,429.3 527.1,429.3 546.1,407.4 546.9,401.6 546.9,401.6 547,399.8 554.6,394.6 554,379.1 571.3,364.9 569.6,348.6 
 		569.6,348.6 567.4,325.3 573.2,318.7 573.2,318.7 606.8,279.5 605.5,272.5 582,276 580.8,274.1 578.1,269.2 577.9,269.2 
@@ -381,230 +413,230 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		393.4,265.9 393.2,270.6 393.2,270.6 393.2,270.8 397.4,275.4 403.1,281.6 408.5,287.3 408.5,287.5 419.7,299.5 436.2,294.8 
 		447.5,291.5 444.8,275.2 454.7,271.6 445.4,262.8 454.7,271.6 448.9,273.7 444.8,275.2 447.5,291.5 451.6,290.4 453.3,289.8 
 		453.3,289.8 462.2,291.2 463.6,296.8 472.3,296.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="453.3,178.8 457.6,178.8 457.6,175.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="832.3,132.4 828.6,132.2 839.1,145.4 844.3,155.1 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="453.3,178.8 457.6,178.8 457.6,175.1 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="832.3,132.4 828.6,132.2 839.1,145.4 844.3,155.1 
 		848.2,155.1 841.8,145.8 845.5,145.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="759.3,290.6 761.9,299.3 772.9,308.6 773.9,305.3 763.4,290 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="759.3,290.6 761.9,299.3 772.9,308.6 773.9,305.3 763.4,290 
 			"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="782,248.3 784.2,250.8 787.1,247.1 787.1,244.2 782,245.4 	
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="782,248.3 784.2,250.8 787.1,247.1 787.1,244.2 782,245.4 	
 		"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="305.4,321.2 305.8,317 298.7,313.9 291.5,318.1 293.8,311.7 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="305.4,321.2 305.8,317 298.7,313.9 291.5,318.1 293.8,311.7 
 		289,309.8 282.2,315 287,307.7 282.7,298.1 282.7,298.1 280.2,292.7 275,292.1 265.7,291.4 255.8,282 252.5,278.9 239.9,277.6 
 		232.7,272.5 216.4,272.5 212.9,272.5 206.1,281.8 202.6,282 201.6,278.5 194.1,279.1 191.3,281.3 187.8,279.3 184.9,283 
 		193.5,286.1 195.4,283 200.3,283.6 201.6,288.1 203,292.9 201.6,301.8 197.6,306.9 191.7,314.4 191,325.9 190.8,329.4 211.7,365.1 
 		229.8,377.3 232.9,451.4 240.8,458 241.2,471.2 255.2,489.3 259.6,489.7 263.3,490.1 261.4,451.1 282.5,441.9 272.8,428.6 
 		284.3,432.6 289,424.7 298.3,408.6 300.4,394.4 323.1,384.5 327.2,353.1 337.1,340.4 337.1,332.7 321,322.2 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="417.2,54.8 427.5,52.7 431.2,49.2 401.3,46.1 375.5,49.2 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="417.2,54.8 427.5,52.7 431.2,49.2 401.3,46.1 375.5,49.2 
 		344.5,49.2 326.4,55.4 312,59.6 312,64.1 334,64.5 339.4,74 339.4,82.7 328.9,88.8 329.3,100.6 335.9,107.4 343.7,107.4 
 		355.7,94.8 372.4,89.7 378.8,84.9 391.4,84.1 400.3,81.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="795.4,334.6 788.3,336.2 780.5,333.3 775.8,337 807.1,342.2 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="795.4,334.6 788.3,336.2 780.5,333.3 775.8,337 807.1,342.2 
 		806.7,340.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="777.4,322.2 752.4,296.4 743.8,293.1 772.7,332.5 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="777.4,322.2 752.4,296.4 743.8,293.1 772.7,332.5 
 		777.4,328.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="803.6,299.7 788.3,306.7 791.4,308.6 806.1,305.3 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="803.6,299.7 788.3,306.7 791.4,308.6 806.1,305.3 
 		806.1,305.3 791.4,308.6 788.3,306.7 788.3,306.7 788.5,315.2 793.3,323.6 808.4,323.6 816,313.9 816,296.6 816,296.6 816,290.2 
 		810.4,290.6 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="410.6,91.9 403.3,91.7 401.7,93.8 397.6,93.6 397.6,97.7 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="410.6,91.9 403.3,91.7 401.7,93.8 397.6,93.6 397.6,97.7 
 		412.2,99.6 421.1,95.4 421.1,94.2 416.6,89.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="849.4,198.6 852.3,197.4 852.7,193.5 861,191.4 860.6,180.5 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="849.4,198.6 852.3,197.4 852.7,193.5 861,191.4 860.6,180.5 
 		856.8,173.8 852.9,172.6 855.2,182.7 847.4,189.7 836.8,192.4 836,195.7 848.4,193.7 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="831.3,279.9 829.8,277.4 827.8,279.5 829.8,281.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="829.8,272.5 826.5,272.1 824.9,274.9 827.3,276.4 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="834.6,198.6 839.1,205.4 840.7,200.3 839.1,198 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="582.9,371.9 581.4,383.1 578.7,390.7 582,398.5 589.9,398.9 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="831.3,279.9 829.8,277.4 827.8,279.5 829.8,281.8 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="829.8,272.5 826.5,272.1 824.9,274.9 827.3,276.4 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="834.6,198.6 839.1,205.4 840.7,200.3 839.1,198 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="582.9,371.9 581.4,383.1 578.7,390.7 582,398.5 589.9,398.9 
 		603.3,355.8 598.7,355.8 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="824.9,270.2 821.8,267.1 821.2,269.6 824,272.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="850.7,170.6 852.7,168.3 858.3,168.1 860.8,164.1 848,158.6 
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="824.9,270.2 821.8,267.1 821.2,269.6 824,272.1 	"
+            />
+            <polygon
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="850.7,170.6 852.7,168.3 858.3,168.1 860.8,164.1 848,158.6 
 		848.4,169.1 	"
-          />
-          <polygon
-            fill="none"
-            stroke="#2D2D2D"
-            strokeMiterlimit="10"
-            points="818.1,345.1 819.5,346.9 823,346.9 821.8,344.3 	"
-          />
-        </g>
-        <Link to="/countries/SA">
-          <g id="SA" onClick={() => onClickContient('SA')} className={classes.southAmerica}>
-            <polygon
-              fill="#BCBEC0"
-              points="191,326.1 197.9,329.4 210.2,314.3 197.7,307.1 191.7,314.4 	"
             />
             <polygon
-              fill="#BCBEC0"
-              points="216.4,272.5 213.1,272.5 206.1,282 202.6,282.2 203.6,285.5 201.6,288.2 203.2,293.1 201.8,301.8 
+              fill="none"
+              stroke="#2D2D2D"
+              strokeMiterlimit="10"
+              points="818.1,345.1 819.5,346.9 823,346.9 821.8,344.3 	"
+            />
+          </g>
+          <Link to="/countries/SA">
+            <g id="SA" ref={SARef} className={classes.southAmerica}>
+              <polygon
+                fill="#BCBEC0"
+                points="191,326.1 197.9,329.4 210.2,314.3 197.7,307.1 191.7,314.4 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="216.4,272.5 213.1,272.5 206.1,282 202.6,282.2 203.6,285.5 201.6,288.2 203.2,293.1 201.8,301.8 
 		197.7,307.1 226.3,323.4 226.3,305.1 233.1,304.5 233.1,290 222,288.8 217.3,283.6 	"
-            />
-            <polygon fill="#BCBEC0" points="261.8,495.3 266.1,499.2 279.2,499.8 265.1,492.4 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="282.2,400.8 276.3,404.3 268.6,404.3 268.6,397.3 252.9,386.6 251.9,388.4 238.9,388.4 
+              />
+              <polygon fill="#BCBEC0" points="261.8,495.3 266.1,499.2 279.2,499.8 265.1,492.4 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="282.2,400.8 276.3,404.3 268.6,404.3 268.6,397.3 252.9,386.6 251.9,388.4 238.9,388.4 
 		235.2,421.2 242.8,453.6 249.4,465.6 249.8,474.5 259.6,489.9 263.3,490.3 261.4,451.1 282.5,441.9 273,428.6 273,414 282.4,404.3 
 			"
-            />
-            <polygon fill="#BCBEC0" points="284.5,432.8 289,424.9 273,414 273,428.6 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="239.9,277.8 232.9,272.7 216.4,272.5 217.3,283.6 222,288.8 233.1,290 233.1,304.5 234.8,304.5 
+              />
+              <polygon fill="#BCBEC0" points="284.5,432.8 289,424.9 273,414 273,428.6 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="239.9,277.8 232.9,272.7 216.4,272.5 217.3,283.6 222,288.8 233.1,290 233.1,304.5 234.8,304.5 
 		236.9,309.4 244.1,307.1 243.5,299.5 253.1,296 255.8,282 252.7,278.9 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="265.7,291.5 255.8,282 253.1,296 257.1,294.5 256.5,306.3 266.1,305.3 262.8,297 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="241.2,348.8 231.5,351.5 231.5,373.6 238.9,388.4 251.9,388.4 257.1,378.9 267,378.9 266.8,371.5 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="265.7,291.5 255.8,282 253.1,296 257.1,294.5 256.5,306.3 266.1,305.3 262.8,297 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="241.2,348.8 231.5,351.5 231.5,373.6 238.9,388.4 251.9,388.4 257.1,378.9 267,378.9 266.8,371.5 
 		249.9,357.7 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="274.6,304.4 281,303.6 282.7,298.3 280.2,292.7 275,292.3 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="267,378.9 257.1,378.9 252.9,386.6 268.6,397.3 268.6,404.3 276.3,404.3 282.2,400.8 281.8,395.4 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="274.6,304.4 281,303.6 282.7,298.3 280.2,292.7 275,292.3 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="267,378.9 257.1,378.9 252.9,386.6 268.6,397.3 268.6,404.3 276.3,404.3 282.2,400.8 281.8,395.4 
 		267.2,387.6 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="266.1,305.3 274.6,304.4 275,292.3 265.7,291.5 262.8,297 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="305.8,317.2 298.7,314.1 291.5,318.3 293.8,311.9 289,309.8 282.2,315 287.2,307.8 282.7,298.3 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="266.1,305.3 274.6,304.4 275,292.3 265.7,291.5 262.8,297 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="305.8,317.2 298.7,314.1 291.5,318.3 293.8,311.9 289,309.8 282.2,315 287.2,307.8 282.7,298.3 
 		281,303.6 256.5,306.3 257.1,294.5 253.1,296 243.5,299.5 244.1,307.1 236.9,309.4 234.8,304.5 226.3,305.1 226.3,326.7 
 		217.7,327.8 214,340.1 228.4,352.3 241.2,348.8 249.9,357.7 266.8,371.5 267.2,387.6 281.8,395.4 282.4,404.3 273,414 289,424.9 
 		298.3,408.6 300.6,394.6 323.1,384.5 327.4,353.3 337.1,340.4 337.1,332.7 321.2,322.4 305.4,321.4 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="217.7,327.8 226.3,326.7 226.3,323.4 210.2,314.3 197.9,329.4 191,326.1 190.8,329.6 211.7,365.3 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="217.7,327.8 226.3,326.7 226.3,323.4 210.2,314.3 197.9,329.4 191,326.1 190.8,329.6 211.7,365.3 
 		230,377.3 231.5,373.6 231.5,351.5 228.4,352.3 214,340.1 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="242.8,453.6 235.2,421.2 238.9,388.4 231.5,373.6 230,377.3 232.9,451.6 241,458 241.2,471.4 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="242.8,453.6 235.2,421.2 238.9,388.4 231.5,373.6 230,377.3 232.9,451.6 241,458 241.2,471.4 
 		255.2,489.3 259.6,489.9 249.8,474.5 249.4,465.6 	"
-            />
-          </g>
-        </Link>
-        <Link to="/countries/NA">
-          <g id="NA" onClick={() => onClickContient('NA')} className={classes.northAmerica}>
-            <polygon
-              fill="#BCBEC0"
-              points="410.6,91.9 403.3,91.7 401.7,93.8 397.6,93.8 397.6,97.7 412.4,99.8 421.1,95.5 421.1,94.4 
+              />
+            </g>
+          </Link>
+          <Link to="/countries/NA">
+            <g id="NA" ref={NARef} className={classes.northAmerica}>
+              <polygon
+                fill="#BCBEC0"
+                points="410.6,91.9 403.3,91.7 401.7,93.8 397.6,93.8 397.6,97.7 412.4,99.8 421.1,95.5 421.1,94.4 
 		416.8,89.9 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="401.5,46.3 375.7,49.2 344.5,49.2 326.4,55.4 312,59.8 312,64.1 334,64.5 339.6,74.2 339.6,82.9 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="401.5,46.3 375.7,49.2 344.5,49.2 326.4,55.4 312,59.8 312,64.1 334,64.5 339.6,74.2 339.6,82.9 
 		329.1,89 329.3,100.8 335.9,107.4 343.9,107.4 355.7,94.8 372.6,89.9 378.8,85.1 391.6,84.3 400.5,81.6 417.2,55 427.5,52.9 
 		431.2,49.2 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="108.7,143.1 103.6,138.8 101.5,140.8 105,145.4 108.7,145.4 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="297.1,142.7 297.1,138.2 297.1,138.2 297.1,138.2 286,149.5 286,149.5 286,149.5 304.5,149.5 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="108.7,143.1 103.6,138.8 101.5,140.8 105,145.4 108.7,145.4 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="297.1,142.7 297.1,138.2 297.1,138.2 297.1,138.2 286,149.5 286,149.5 286,149.5 304.5,149.5 
 		300.6,143.5 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="298.8,85.5 298.7,79.1 276.1,69.9 272.8,69.9 265.1,76.3 267.8,69.9 263.9,69.7 254.8,79.4 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="298.8,85.5 298.7,79.1 276.1,69.9 272.8,69.9 265.1,76.3 267.8,69.9 263.9,69.7 254.8,79.4 
 		276.9,78.3 290.3,90.3 281.4,90.1 276.7,93.8 266.4,93.8 266.4,96.7 276.9,96.7 285.7,104.1 288.2,103.1 286,98.5 292.1,101.4 
 		294.2,100.4 294.2,91.3 301.2,93.8 305.1,91.1 302.9,87 	"
-            />
-            <path
-              fill="#BCBEC0"
-              d="M267.6,152.6l4.1-6.2l-1.9-1.9l-12.6,5.6v-3.3l12-5.8l19.4-0.8l14.6-7.8v-3.5l-10.7-1.7l-1.4-17.3
+              />
+              <path
+                fill="#BCBEC0"
+                d="M267.6,152.6l4.1-6.2l-1.9-1.9l-12.6,5.6v-3.3l12-5.8l19.4-0.8l14.6-7.8v-3.5l-10.7-1.7l-1.4-17.3
 		l-13.8,5.4v-8.2l-6.6-5.6h-9.1l-24.5,35.7h-6l0.2-11.6l-21.2-11.4l21.2-15.7l12-2.1l-2.5-3.7l18.4-1.9l7.6-7.8l-7-0.8l-9.7,6.4
 		l1.2-5.4l-4.5-0.4l-1.2-6.6l-7.8,3.5l1.9,4.3l-10.5,5l-18.2-3.5l-9.7,4.5L178,80.6l-44.8,1l-30.9,26l3.5,4.1l0,0l-3.5-4.1
 		l30.7-26.4l0,0l-7.2-2.9l-37.1,0.2l-14.9,6v6.6l-16.9-0.2l-3.3,4.5l14.2-0.6l-18,7l-8.9,11.8l7.6-0.2l-14.6,9.7l5.2,0.4l27.9-13.4
@@ -615,137 +647,140 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		h-2.9l-4.1,3.1l-4.3,0.4l0.8-7.2h-3.1l-3.7,2.5l-7,10.3h-4.1l8-12.8l9.3-1.9l-0.6-1.7l-6.2-0.2l-2.9-1.7l-3.7,1.7h-4.3l1.7-3.7
 		l-8.7-4.1l0,0l8.9,4.1l14.9-3.1l1.9,6.6l3.1,2.3l5-0.4L223.2,160.8L223.2,160.8z M228.4,164.1h-3.5l4.9-3.3l0,0l0,0h3.5
 		L228.4,164.1z"
-            />
-            <polygon fill="#BCBEC0" points="255.8,99.8 257.1,96.7 250.3,93.8 244.5,98.5 	" />
-            <polygon fill="#BCBEC0" points="235.6,82 234,79.4 228,82 230.2,84.7 	" />
-            <polygon fill="#BCBEC0" points="243,73.8 244.9,68.8 232.1,72.8 235.6,76.3 	" />
-            <polygon fill="#BCBEC0" points="257.1,71.3 255,68.8 246.1,70.7 247,74 	" />
-            <polygon fill="#BCBEC0" points="288,63.9 271.7,63.9 266.1,61.6 260.8,66.2 282.4,68 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="335.3,45.5 290.7,48.8 290.7,51.3 305.8,50.9 303.7,53.6 288,54 290.1,57.7 283.3,56.5 286,60 
+              />
+              <polygon fill="#BCBEC0" points="255.8,99.8 257.1,96.7 250.3,93.8 244.5,98.5 	" />
+              <polygon fill="#BCBEC0" points="235.6,82 234,79.4 228,82 230.2,84.7 	" />
+              <polygon fill="#BCBEC0" points="243,73.8 244.9,68.8 232.1,72.8 235.6,76.3 	" />
+              <polygon fill="#BCBEC0" points="257.1,71.3 255,68.8 246.1,70.7 247,74 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="288,63.9 271.7,63.9 266.1,61.6 260.8,66.2 282.4,68 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="335.3,45.5 290.7,48.8 290.7,51.3 305.8,50.9 303.7,53.6 288,54 290.1,57.7 283.3,56.5 286,60 
 		274.4,60 276.1,61.6 288.8,61.6 290.9,63.3 309.3,54.8 324.1,51.9 	"
-            />
-            <polygon fill="#BCBEC0" points="282.5,53.1 279.1,50.3 269.4,54.4 277.7,56 	" />
-            <polygon fill="#BCBEC0" points="201,69.5 196.6,67.6 178.1,72.3 181.4,76.3 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="199.3,77.1 189.6,79.4 201.6,84.1 210,80.6 219.1,82.7 226.1,81.2 219.3,78.1 224.5,71.3 
+              />
+              <polygon fill="#BCBEC0" points="282.5,53.1 279.1,50.3 269.4,54.4 277.7,56 	" />
+              <polygon fill="#BCBEC0" points="201,69.5 196.6,67.6 178.1,72.3 181.4,76.3 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="199.3,77.1 189.6,79.4 201.6,84.1 210,80.6 219.1,82.7 226.1,81.2 219.3,78.1 224.5,71.3 
 		219.3,71.3 216.2,75.4 214.8,71.3 209.4,73.4 203.6,70.9 193.1,74.4 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="216.2,243.8 200.1,232.4 191.5,232.4 188.2,235.5 197.9,235.5 205.7,240.7 202.8,243.8 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="201.8,247.5 201.8,249.8 203.8,251.6 209.6,251.6 209.6,249.4 207.4,247.5 	"
-            />
-            <polygon fill="#BCBEC0" points="236.2,250.2 239.5,250.2 240.6,248.3 237.3,248.3 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="169.8,250.6 165.1,250.6 165.9,256.6 160.5,256.6 158,261.3 165.7,265.2 171,255.6 	"
-            />
-            <polygon fill="#BCBEC0" points="176,246.1 169.8,250.6 171,255.6 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="185.9,275.8 185.5,257.4 169.8,257.6 167.3,262.2 165.7,265.2 171.2,267.7 172.5,268.3 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="216.2,243.8 200.1,232.4 191.5,232.4 188.2,235.5 197.9,235.5 205.7,240.7 202.8,243.8 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="201.8,247.5 201.8,249.8 203.8,251.6 209.6,251.6 209.6,249.4 207.4,247.5 	"
+              />
+              <polygon fill="#BCBEC0" points="236.2,250.2 239.5,250.2 240.6,248.3 237.3,248.3 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="169.8,250.6 165.1,250.6 165.9,256.6 160.5,256.6 158,261.3 165.7,265.2 171,255.6 	"
+              />
+              <polygon fill="#BCBEC0" points="176,246.1 169.8,250.6 171,255.6 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="185.9,275.8 185.5,257.4 169.8,257.6 167.3,262.2 165.7,265.2 171.2,267.7 172.5,268.3 
 		177.4,274.9 183,282.4 185.1,283.2 187.8,279.5 185.9,278.4 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="201.6,278.5 194.1,279.3 191.5,281.5 187.8,279.5 185.1,283.2 193.5,286.1 195.4,283.2 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="201.6,278.5 194.1,279.3 191.5,281.5 187.8,279.5 185.1,283.2 193.5,286.1 195.4,283.2 
 		200.3,283.6 201.6,288.2 203.6,285.5 202.6,282.4 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="217.7,244.6 219.5,247.3 216.2,247.3 216.2,248.5 223.6,248.5 223.6,249.8 226.7,247.5 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="217.7,244.6 219.5,247.3 216.2,247.3 216.2,248.5 223.6,248.5 223.6,249.8 226.7,247.5 
 		231.7,247.5 233.1,245.7 223.6,244.6 	"
-            />
-          </g>
-        </Link>
-        <Link to="/countries/AS">
-          <g id="AS" onClick={() => onClickContient('AS')} className={classes.asia}>
-            <polygon fill="#BCBEC0" points="817.2,226.1 813.1,232 817.2,235.9 819.9,228.7 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="782,248.5 784.2,250.8 787.1,247.1 787.1,244.4 782,245.6 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="850.9,170.8 852.7,168.3 858.3,168.3 860.8,164.1 848.2,158.8 848.4,169.3 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="849.6,198.8 852.3,197.6 852.7,193.7 861,191.6 860.6,180.5 856.8,173.9 853.1,172.8 855.2,182.9 
+              />
+            </g>
+          </Link>
+          <Link to="/countries/AS">
+            <g id="AS" ref={ASRef} className={classes.asia}>
+              <polygon fill="#BCBEC0" points="817.2,226.1 813.1,232 817.2,235.9 819.9,228.7 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="782,248.5 784.2,250.8 787.1,247.1 787.1,244.4 782,245.6 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="850.9,170.8 852.7,168.3 858.3,168.3 860.8,164.1 848.2,158.8 848.4,169.3 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="849.6,198.8 852.3,197.6 852.7,193.7 861,191.6 860.6,180.5 856.8,173.9 853.1,172.8 855.2,182.9 
 		847.4,189.9 837,192.6 836,195.7 848.6,193.9 	"
-            />
-            <polygon fill="#BCBEC0" points="834.6,198.8 839.1,205.6 840.7,200.3 839.3,198.2 	" />
-            <polygon fill="#BCBEC0" points="841.8,197.2 844.7,200.5 846.9,196.7 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="832.1,267.9 833.1,264.6 826.3,264 823.8,260.7 826.3,255.1 823.8,249.4 819.1,249.4 818.1,259.1 
+              />
+              <polygon fill="#BCBEC0" points="834.6,198.8 839.1,205.6 840.7,200.3 839.3,198.2 	" />
+              <polygon fill="#BCBEC0" points="841.8,197.2 844.7,200.5 846.9,196.7 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="832.1,267.9 833.1,264.6 826.3,264 823.8,260.7 826.3,255.1 823.8,249.4 819.1,249.4 818.1,259.1 
 		824.5,266.9 	"
-            />
-            <polygon fill="#BCBEC0" points="814.5,282.4 819.9,278 819.7,274.3 811.4,281.8 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="838.7,278.4 836.4,284.4 829,284.4 835.2,288.8 835.2,293.1 839.7,291.7 838.1,289 841.8,288.1 	
+              />
+              <polygon fill="#BCBEC0" points="814.5,282.4 819.9,278 819.7,274.3 811.4,281.8 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="838.7,278.4 836.4,284.4 829,284.4 835.2,288.8 835.2,293.1 839.7,291.7 838.1,289 841.8,288.1 	
 		"
-            />
-            <polygon fill="#BCBEC0" points="825.1,270.4 821.8,267.3 821.4,269.8 824,272.3 	" />
-            <polygon fill="#BCBEC0" points="829.8,272.7 826.5,272.3 825.1,274.9 827.3,276.4 	" />
-            <polygon fill="#BCBEC0" points="840.3,275.1 837,269.8 833.7,271 836.8,275.1 	" />
-            <polygon fill="#BCBEC0" points="831.5,275.6 833.9,279.3 835.4,277.6 833.7,274.5 	" />
-            <polygon fill="#BCBEC0" points="831.5,279.9 829.8,277.6 828,279.7 829.8,281.8 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="777.4,322.4 752.4,296.4 743.8,293.1 772.9,332.5 777.4,328.8 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="795.4,334.6 788.5,336.2 780.5,333.3 775.8,337 807.1,342.4 806.7,340.3 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="821.8,340.3 822.8,343.4 827.5,343.4 829.4,341.8 826.7,340.3 	"
-            />
-            <polygon fill="#BCBEC0" points="818.1,345.3 819.7,347 823,347 821.8,344.5 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="831.1,346.5 834.8,347 838.1,343.9 844,343.4 844,341 836,341 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="832.7,315.4 825.5,315.6 824,313.7 826.9,310.4 832.3,312.3 834.8,312.1 838.9,307.3 835.4,307.3 
+              />
+              <polygon fill="#BCBEC0" points="825.1,270.4 821.8,267.3 821.4,269.8 824,272.3 	" />
+              <polygon fill="#BCBEC0" points="829.8,272.7 826.5,272.3 825.1,274.9 827.3,276.4 	" />
+              <polygon fill="#BCBEC0" points="840.3,275.1 837,269.8 833.7,271 836.8,275.1 	" />
+              <polygon fill="#BCBEC0" points="831.5,275.6 833.9,279.3 835.4,277.6 833.7,274.5 	" />
+              <polygon fill="#BCBEC0" points="831.5,279.9 829.8,277.6 828,279.7 829.8,281.8 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="777.4,322.4 752.4,296.4 743.8,293.1 772.9,332.5 777.4,328.8 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="795.4,334.6 788.5,336.2 780.5,333.3 775.8,337 807.1,342.4 806.7,340.3 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="821.8,340.3 822.8,343.4 827.5,343.4 829.4,341.8 826.7,340.3 	"
+              />
+              <polygon fill="#BCBEC0" points="818.1,345.3 819.7,347 823,347 821.8,344.5 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="831.1,346.5 834.8,347 838.1,343.9 844,343.4 844,341 836,341 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="832.7,315.4 825.5,315.6 824,313.7 826.9,310.4 832.3,312.3 834.8,312.1 838.9,307.3 835.4,307.3 
 		833.1,308.8 825.5,306.9 820.7,311.3 821.1,318.5 818.1,322.4 819.9,331.5 823.4,330.6 822.4,324.1 824.5,321.8 826.3,326.5 
 		830.6,328 830.6,324.5 828.2,319.3 	"
-            />
-            <polygon fill="#BCBEC0" points="846.1,324.3 854,323.6 854,321.4 846.9,321.4 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="847.8,306.9 850,304.2 848.8,302.6 846.1,305.3 844.9,311.9 848.8,312.9 	"
-            />
-            <polygon fill="#BCBEC0" points="866.1,314.6 857.1,315.8 867,320.3 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="803.8,299.7 788.3,306.9 791.6,308.8 806.1,305.5 806.1,305.5 791.6,308.8 788.3,306.9 
+              />
+              <polygon fill="#BCBEC0" points="846.1,324.3 854,323.6 854,321.4 846.9,321.4 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="847.8,306.9 850,304.2 848.8,302.6 846.1,305.3 844.9,311.9 848.8,312.9 	"
+              />
+              <polygon fill="#BCBEC0" points="866.1,314.6 857.1,315.8 867,320.3 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="803.8,299.7 788.3,306.9 791.6,308.8 806.1,305.5 806.1,305.5 791.6,308.8 788.3,306.9 
 		788.3,306.9 788.5,315.2 793.3,323.6 808.4,323.6 816,314.1 816,296.6 816,296.6 816,290.2 810.4,290.8 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="759.3,290.8 762.1,299.5 773.1,308.8 773.9,305.5 763.4,290.2 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="907,332.1 887.6,322 879.1,317.4 870.9,324 862.4,320.7 861.6,325.3 866.5,325.1 878.9,330.4 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="759.3,290.8 762.1,299.5 773.1,308.8 773.9,305.5 763.4,290.2 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="907,332.1 887.6,322 879.1,317.4 870.9,324 862.4,320.7 861.6,325.3 866.5,325.1 878.9,330.4 
 		881.2,336.8 877.1,339.3 887.6,343 891.5,344.3 898.9,337.5 908.6,346.9 917.3,348.6 906.4,337.7 	"
-            />
-            <polygon fill="#BCBEC0" points="915.8,335.4 922.5,331.5 922.5,327.6 911.9,333.1 	" />
-            <polygon fill="#BCBEC0" points="920.2,321.8 917.3,322 925.1,327.6 928.4,326.7 	" />
-            <path
-              fill="#BCBEC0"
-              d="M750,259.7l2.5,9.5l-0.6,9.7l-0.2,3.9l6.8,5.8l0.6,2.1l4.1-0.6l-6.4-9.9l1.6-15.1l7.6,7.4l0,0l3.7,3.7
+              />
+              <polygon fill="#BCBEC0" points="915.8,335.4 922.5,331.5 922.5,327.6 911.9,333.1 	" />
+              <polygon fill="#BCBEC0" points="920.2,321.8 917.3,322 925.1,327.6 928.4,326.7 	" />
+              <path
+                fill="#BCBEC0"
+                d="M750,259.7l2.5,9.5l-0.6,9.7l-0.2,3.9l6.8,5.8l0.6,2.1l4.1-0.6l-6.4-9.9l1.6-15.1l7.6,7.4l0,0l3.7,3.7
 		l4.3-0.6l0.2,6.8l12-8l-0.4-11.8l-12.6-13.2l0.6-7.2l4.5-2.5l0,0l4.1-2.3l0.2,3.9l24.3-8.7l8-17.7l-14.2-23.3l7.2-8h-8.3l-2.7,1.7
 		l-5.2-8.5l6.6-5.8l4.7,8.7l6.4-4.5l0,0l3.7,6.8l4.9,1.4l5,10.9l6-0.4l1-7l-8.3-6.8l-3.7-3.1l4.9-0.6l-0.8-9.5l-8.5,5.8l8.5-5.8
 		l8.9-1.6l4.9-7.2v-13.4l-13.8-15.7l-13.4-0.2l2.3-16.5l27.6,0.2l2.9-9.3l11.6,4.5v-4.3l2.9,0.4l5,4.9l-4.9,3.3l-0.6,9.9l19.6,18.6
@@ -766,51 +801,51 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		l6.6-4.7H678l-5-2.3l9.7,4.5L678,190.1z M722.5,228.1l-3.9-5.2L722.5,228.1L722.5,228.1z M727.9,232.7l-1-6.4l0,0L727.9,232.7
 		l5.2,5L727.9,232.7z M742.5,216.8l-11.1-4.9l-7.6,6.8l-1.6,3.3l-6.6-1.6l0,0l6.6,1.6l1.6-3.3l-7.2-2.5l-1.9-0.6l-25.8-8.9l-5.4-1.9
 		l40.6,14l7.6-6.8l15.9,6.8l-2.1,6l8.5,14.2l0,0l-8.5-14.2l2.1-6L742.5,216.8z"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="832.3,132.4 828.6,132.2 839.3,145.4 844.3,155.1 848.2,155.1 841.8,146 845.5,146 	"
-            />
-          </g>
-        </Link>
-        <Link to="/countries/EU">
-          <g id="EU" onClick={() => onClickContient('EU')} className={classes.europe}>
-            <polygon fill="#BCBEC0" points="486.1,191.6 490.8,192.8 490.8,188.7 486.1,188.5 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="584.5,178.4 578.9,173.2 584.5,178.4 590.5,177.8 586.2,170.3 581.8,169.1 571.1,164.4 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="832.3,132.4 828.6,132.2 839.3,145.4 844.3,155.1 848.2,155.1 841.8,146 845.5,146 	"
+              />
+            </g>
+          </Link>
+          <Link to="/countries/EU">
+            <g id="EU" ref={EURef} className={classes.europe}>
+              <polygon fill="#BCBEC0" points="486.1,191.6 490.8,192.8 490.8,188.7 486.1,188.5 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="584.5,178.4 578.9,173.2 584.5,178.4 590.5,177.8 586.2,170.3 581.8,169.1 571.1,164.4 
 		566.8,165.2 566.8,171 533.5,172.2 530.6,175.7 524.1,175.7 529.4,186.4 553.8,187.7 577.9,182.7 577.9,179 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="479.1,113.6 479.9,114.6 487.3,122.9 499.3,112.2 493.7,105.3 506.3,91.5 508.8,91.5 505.3,83.1 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="479.1,113.6 479.9,114.6 487.3,122.9 499.3,112.2 493.7,105.3 506.3,91.5 508.8,91.5 505.3,83.1 
 		505.3,83.1 508.8,91.5 510.8,91.5 504.7,105.3 511.9,108.9 522.8,108.9 528.8,101.8 518.7,79.2 513.1,79.4 501.8,80 463.8,106.4 
 		467.7,115.3 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="478.7,125.4 482.4,125.4 483.6,123.7 481.3,121.4 479.3,122.1 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="483.8,183.7 486.7,185.6 491.4,186.4 491.4,181.9 483.8,181.9 	"
-            />
-            <polygon fill="#BCBEC0" points="471.6,179 475.2,179 475.2,172.4 471.6,171.2 	" />
-            <polygon fill="#BCBEC0" points="473.5,169.1 475.2,169.9 476,166 473.5,166 	" />
-            <polygon
-              fill="#BCBEC0"
-              points="441.9,129.9 438.6,131.6 441.5,135.9 435.7,141.3 443.4,140 451.2,138.6 451.8,135.9 453.3,135.9 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="478.7,125.4 482.4,125.4 483.6,123.7 481.3,121.4 479.3,122.1 	"
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="483.8,183.7 486.7,185.6 491.4,186.4 491.4,181.9 483.8,181.9 	"
+              />
+              <polygon fill="#BCBEC0" points="471.6,179 475.2,179 475.2,172.4 471.6,171.2 	" />
+              <polygon fill="#BCBEC0" points="473.5,169.1 475.2,169.9 476,166 473.5,166 	" />
+              <polygon
+                fill="#BCBEC0"
+                points="441.9,129.9 438.6,131.6 441.5,135.9 435.7,141.3 443.4,140 451.2,138.6 451.8,135.9 453.3,135.9 
 		453.7,132.6 448.7,131.4 442.3,116.9 437.4,116.7 437.4,124.7 441.9,125 	"
-            />
-            <polygon
-              fill="#BCBEC0"
-              points="427.3,134.7 433.7,135.7 433.1,129.3 435.7,128.5 435.7,125.4 429.8,125 424.2,129.1 424.2,137.7 
+              />
+              <polygon
+                fill="#BCBEC0"
+                points="427.3,134.7 433.7,135.7 433.1,129.3 435.7,128.5 435.7,125.4 429.8,125 424.2,129.1 424.2,137.7 
 		427.3,137.7 	"
-            />
-            <polygon fill="#BCBEC0" points="457.6,178.8 457.6,175.1 453.3,178.8 	" />
-            <path
-              fill="#BCBEC0"
-              d="M527.6,168.1L527.6,168.1L527.6,168.1l1.9-5.8l1.6-4.9l-2.9-1.2l-4.1-8.5l4.1,8.5l2.9,1.2l0.8-2.3h11.3
+              />
+              <polygon fill="#BCBEC0" points="457.6,178.8 457.6,175.1 453.3,178.8 	" />
+              <path
+                fill="#BCBEC0"
+                d="M527.6,168.1L527.6,168.1L527.6,168.1l1.9-5.8l1.6-4.9l-2.9-1.2l-4.1-8.5l4.1,8.5l2.9,1.2l0.8-2.3h11.3
 		l-2.5,2.5l3.5,1.9l4.7-0.4l-4.5-5.6L556,151l2.9-6.6l-21.3-8.7l-5.2-2.1l3.1-1.9l-5.4-8.7h-7l-0.8-6l-3.1,1l3.1-1l-1-6.8l-1.7,1.6
 		l-8.9,0.2l-0.8,1.9l2.7,1.9l0.6,0.4l-0.6,2.9l-6.2-2.9v3.7v4.3l4.7,1.6l1.4,2.7l1,2.9l1.6,4.3l1,2.5l-5,6.2l5-6.2l-1-2.5l-1.6-4.3
 		l-1-2.9l-1.4-2.7l-4.7-1.6v3.1l-6.2,0.2l-1.4-1.4l-8.9,2.1H489l0.8,10.9l8.5,3.3l0.4,0.2l-0.6-0.2l-8.5-3.3l-0.8-10.9l-11.4-0.2
@@ -820,29 +855,29 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		l-4.1,3.1l4.3,8.2l0.4,0.6l2.7,3.1l5.2,1.6l-3.3,1.4l4.3,5.4l2.7-4.3l-2.9-6.6l6-2.9h4.9h6L527.6,168.1z M467.1,139v-0.6l0.4-6.6
 		L467.1,139z M472.7,155.3L472.7,155.3L472.7,155.3L472.7,155.3z M493.9,153.2l-1.4-0.6l3.5-2.9l1.4-1l-4.9,3.9l7,2.5L493.9,153.2z
 		 M514.3,167.2l-1.7-4.3l3.9,8.9L514.3,167.2z"
-            />
-            <polygon fill="#BCBEC0" points="605.5,226.3 602.4,222.1 601.2,226.3 603.7,228.1 	" />
-            <polygon fill="#BCBEC0" points="546.5,194.1 548.4,190.4 541.4,193 	" />
-            <path
-              fill="#BCBEC0"
-              d="M620.8,227.9l-3.3-2.9l-5.2,5.8l-6.6-1.4l0,0l-5.4-3.7l-6.8-11.3l-3.7-6h-3.5h6.8l-15.1-25.8l-7,1.4
+              />
+              <polygon fill="#BCBEC0" points="605.5,226.3 602.4,222.1 601.2,226.3 603.7,228.1 	" />
+              <polygon fill="#BCBEC0" points="546.5,194.1 548.4,190.4 541.4,193 	" />
+              <path
+                fill="#BCBEC0"
+                d="M620.8,227.9l-3.3-2.9l-5.2,5.8l-6.6-1.4l0,0l-5.4-3.7l-6.8-11.3l-3.7-6h-3.5h6.8l-15.1-25.8l-7,1.4
 		l-17.1,3.5l-1.2,5.4l3.1,1.2l-3.1-1.2l-1.2,5.2l-2.1,8l3.5,5.6v-0.2l0,0l24.3,42.1l0.4,1.6l0,0l4.3,14l31.6-14.2l15.9-19.8
 		L620.8,227.9z M555.6,212.2l-2.5-0.4L555.6,212.2L555.6,212.2z M556.7,201.9l-3.7-2.7L556.7,201.9L556.7,201.9z M559.5,210.2
 		L559.5,210.2L559.5,210.2L559.5,210.2L559.5,210.2z M556.9,201.9l11.1-6.6l-5,2.9L556.9,201.9z M563.7,201.9L563.7,201.9
 		L563.7,201.9l16.5,8.7L563.7,201.9z M588,255.6L588,255.6l0.8-3.3l-8.5-1.2l8.5,1.2L588,255.6z M588.2,211.8h-5.8h3.1H588.2
 		l2.1,2.7L588.2,211.8z M600.2,249.2l-5.8,3.1L600.2,249.2h0.2H600.2z"
-            />
-          </g>
-        </Link>
-        <Link to="/countries/AF">
-          <g id="AF" onClick={() => onClickContient('AF')} className={classes.africa}>
-            <polygon
-              fill="#BCBEC0"
-              points="583.1,372.1 581.4,383.3 578.9,390.7 582.2,398.7 589.9,398.9 603.5,355.8 598.7,355.8 	"
-            />
-            <path
-              fill="#BCBEC0"
-              d="M605.5,272.7l-23.5,3.5l-1.2-2.1l-2.7-4.9l-0.2,0.2l0.2-0.2l-13.6-23.3l-8.2-13.8l-12.4-21.3l6.8,5.4
+              />
+            </g>
+          </Link>
+          <Link to="/countries/AF">
+            <g id="AF" ref={AFRef} className={classes.africa}>
+              <polygon
+                fill="#BCBEC0"
+                points="583.1,372.1 581.4,383.3 578.9,390.7 582.2,398.7 589.9,398.9 603.5,355.8 598.7,355.8 	"
+              />
+              <path
+                fill="#BCBEC0"
+                d="M605.5,272.7l-23.5,3.5l-1.2-2.1l-2.7-4.9l-0.2,0.2l0.2-0.2l-13.6-23.3l-8.2-13.8l-12.4-21.3l6.8,5.4
 		l1.9-4.3v-0.2l-3.5-5.6l-27.2-3.7l-1.6,33l0,0l1.6-33l-11.4-1.6l-4.7,7.2l-10.5-2.1l-4.1-5l-8.9-2.1l-3.3-0.8l0.4-11.3l-9.9-0.2
 		l-11.4-0.4l-15.3,5.8l0,0l-17.5,1.7l-16.9,21.9h8.9h1.7l0,0h-10.5l-14.2,18.6l-0.2,4.5l0,0l-0.4,12.4l-0.4,12v2.7l-0.2,4.7l0,0v0.2
 		l4.5,4.7l5.6,6l5.4,5.8l0,0l11.3,12.2l16.5-4.9l11.3-3.3l-2.7-16.3l9.9-3.7l-9.5-8.5l-17.1,7l31-12.6l-14,5.6l9.5,8.5l-6,2.1
@@ -858,10 +893,11 @@ export const WorldMap: React.FC<WorldMapProps> = ({
 		L548.4,370.1z M548.4,343.7l-2.3-3.3l-1.9-2.9L548.4,343.7L548.4,343.7z M552.5,352.3L552.5,352.3v-8.5l0,0V352.3z M551.5,314.6
 		l-1,1.7h-5.8l1.6-2.5l0,0l2.1-3.9h5.8L551.5,314.6z M553.3,296.6l-11.1,1.6l16.9-2.3l-10.9-11.3l0,0l10.9,11.3L553.3,296.6z
 		 M577.5,276.6L577.5,276.6l3.5,3.9l-6.8-7.8L577.5,276.6z M573.2,303.2l6.2-5.2l15.3-12.6L573.2,303.2z"
-            />
-          </g>
-        </Link>
-      </svg>
-    </div>
+              />
+            </g>
+          </Link>
+        </svg>
+      </div>
+    </>
   );
 };
