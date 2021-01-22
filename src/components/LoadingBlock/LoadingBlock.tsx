@@ -10,7 +10,7 @@ export const LoadingBlock: React.FC<LoadingBlockProps> = ({
 }: LoadingBlockProps): React.ReactElement => {
   return (
     <div style={{ marginTop: 170, display: 'flex', justifyContent: 'center' }}>
-      <CircularProgress size={size} disableShrink />
+      <CircularProgress size={size} disableShrink style={{ color: 'rgb(0, 103, 238)' }} />
     </div>
   );
 };

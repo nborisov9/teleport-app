@@ -5,6 +5,6 @@ export interface ICitiesState {
   loadingState: boolean;
 }
 
-export const SET_CITIES: string = 'cities/SET_CITIES';
-
+export const SET_CITY_NAMES: string = 'cities/SET_CITY_NAMES';
+export const SET_CITY_DATA: string = 'cities/SET_CITY_DATA';
 export const CLEAR_CITIES: string = 'cities/CLEAR_CITIES';

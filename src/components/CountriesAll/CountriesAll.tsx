@@ -87,7 +87,7 @@ export const CountriesAll: React.FC = (): React.ReactElement | null => {
                 key={index + name}
                 onClick={() => countryClickHandler(name)}>
                 <NavLink
-                  activeStyle={{ fontWeight: 600 }}
+                  activeStyle={{ fontWeight: 600, color: 'rgb(0, 103, 238)' }}
                   to={`/countries/${continentName}/${name}`}>
                   {name}
                 </NavLink>

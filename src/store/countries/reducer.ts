@@ -5,6 +5,7 @@ import {
   SET_COUNTRY_NAMES,
   SET_COUNTRY_DATA,
   CLEAR_COUNTRY_DATA,
+  CLEAR_COUNTRIES_ITEMS,
 } from './types';
 
 const initialState = {
@@ -40,5 +41,13 @@ export const countriesReducer = createReducer(initialState, {
     state.items.countryData.basicData = {};
     state.items.countryData.salaryData = [];
     state.items.countryData.isLoaded = false;
+  },
+
+  [CLEAR_COUNTRIES_ITEMS]: (state) => {
+    state.items.countries = [];
+    state.items.countryData.basicData = {};
+    state.items.countryData.salaryData = [];
+    state.items.countryData.isLoaded = false;
+    state.isLoaded = false;
   },
 });
