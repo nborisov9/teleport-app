@@ -40,4 +40,10 @@ export const CitiesApi = {
       return axios.get(data._links['ua:scores'].href);
     });
   },
+
+  async fetchCitySalaryData(cityName: string) {
+    return CitiesApi.fetchCityData(cityName).then((data) => {
+      return axios.get(data._links['ua:salaries'].href);
+    });
+  },
 };

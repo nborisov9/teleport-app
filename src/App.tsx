@@ -8,8 +8,6 @@ import { CitiesAll } from './pages/CitiesAll';
 
 import './app.scss';
 
-// import { CitiesApi } from './services/api/citiesApi';
-
 const App: React.FC = (): React.ReactElement => {
   return (
     <Router>
@@ -25,5 +23,3 @@ const App: React.FC = (): React.ReactElement => {
 };
 
 export default App;
-
-// console.log(CitiesApi.fetchCityImageData('Moscow'));

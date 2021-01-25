@@ -1,5 +1,5 @@
 import { RootState } from '../store';
-import { ICityNames } from './types';
+import { ICityNames, IScoreData } from './types';
 
 export const selectCities = (state: RootState): any => state.cities;
 
@@ -17,5 +17,8 @@ export const selectCityCoordsData = (state: RootState) =>
 export const selectCityImageData = (state: RootState) =>
   selectCities(state).items.cityData.imageData;
 
-export const selectCityScoreData = (state: RootState) =>
+export const selectCityScoreData = (state: RootState): IScoreData =>
   selectCities(state).items.cityData.scoreData;
+
+export const selectCitySalaryData = (state: RootState) =>
+  selectCities(state).items.cityData.salaryData;

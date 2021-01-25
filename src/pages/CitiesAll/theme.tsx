@@ -112,7 +112,8 @@ export const useCitiesAllStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     height: '100%',
-    background: 'purple',
+    // width: 100%,
+    // background: 'purple',
   },
   barGraphInfoWrapper: {
     marginTop: 25,

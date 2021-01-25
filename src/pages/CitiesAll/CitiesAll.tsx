@@ -16,9 +16,12 @@ import {
   selectCityImageData,
   selectCityLoadingState,
   selectCityNames,
+  selectCitySalaryData,
   selectCityScoreData,
 } from '../../store/cities/selectors';
-import { ICityNames } from '../../store/cities/types';
+import { ICityNames, IScoreData } from '../../store/cities/types';
+import { CitiesSalaryInfo } from '../../components/CitiesSalaryInfo';
+import { BarGraphBlock } from '../../components/BarGraphBlock';
 
 export const CitiesAll: React.FC = (): React.ReactElement | null => {
   const classes = useCitiesAllStyles();
@@ -32,7 +35,8 @@ export const CitiesAll: React.FC = (): React.ReactElement | null => {
   const cityBasicData = useSelector(selectCityBasicData);
   const cityCoordsData = useSelector(selectCityCoordsData);
   const cityImageData = useSelector(selectCityImageData);
-  const cityScoreData = useSelector(selectCityScoreData);
+  const cityScoreData: IScoreData = useSelector(selectCityScoreData);
+  const citySalaryData = useSelector(selectCitySalaryData);
   const cityLoadingState = useSelector(selectCityLoadingState);
 
   return (
@@ -79,29 +83,13 @@ export const CitiesAll: React.FC = (): React.ReactElement | null => {
               className={classes.citiesAllInfoText}
               dangerouslySetInnerHTML={{ __html: cityScoreData.summary }}
             />
-            <div className={classes.citiesAllBarGraph}>
-              <div className={classes.barGraphTitle}>Score</div>
-              <div className={classes.barGraphInfoWrapper}>
-                <div className={classes.barGraphRowTitle}>Housing</div>
-                <div className={classes.barGraphRowTitle}>5 / 10</div>
-              </div>
-              <div className={classes.barGraphRow}>
-                <div style={{ width: '90%' }} className={classes.barGraphRowCurrentScore} />
-              </div>
-              <div className={classes.barGraphInfoWrapper}>
-                <div className={classes.barGraphRowTitle}>Housing</div>
-                <div className={classes.barGraphRowTitle}>5 / 10</div>
-              </div>
-              <div className={classes.barGraphRow}>
-                <div style={{ width: '20%' }} className={classes.barGraphRowCurrentScore} />
-              </div>
-              <div className={classes.barGraphInfoWrapper}>
-                <div className={classes.barGraphRowTitle}>Housing</div>
-                <div className={classes.barGraphRowTitle}>5 / 10</div>
-              </div>
-              <div className={classes.barGraphRow}>
-                <div style={{ width: '60%' }} className={classes.barGraphRowCurrentScore} />
-              </div>
+            {!cityScoreData.categories ? (
+              <LoadingBlock size={60} />
+            ) : (
+              <BarGraphBlock cityScoreData={cityScoreData.categories} />
+            )}
+            <div style={{ marginTop: 80 }}>
+              <CitiesSalaryInfo citiesSalaryData={citySalaryData.slice(39)} />
             </div>
           </Container>
         </>

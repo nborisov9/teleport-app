@@ -7,6 +7,7 @@ import {
   fetchCitiesCoordsData,
   fetchCitiesData,
   fetchCitiesImagesData,
+  fetchCitiesSalariesData,
   fetchCitiesScoresData,
 } from '../../store/cities/actions';
 import { CityCurrentNameType, ICityNames } from '../../store/cities/types';
@@ -34,6 +35,7 @@ export const SelectBlock: React.FC<SelectBlockProps> = ({
     dispatch(fetchCitiesCoordsData(cities));
     dispatch(fetchCitiesImagesData(cities));
     dispatch(fetchCitiesScoresData(cities));
+    dispatch(fetchCitiesSalariesData(cities));
   }, [dispatch, cities, history]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
