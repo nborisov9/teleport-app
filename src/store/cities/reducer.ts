@@ -1,11 +1,20 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { CLEAR_CITIES, SET_CITY_DATA, SET_CITY_NAMES } from './types';
+import {
+  SET_CITY_COORDS_DATA,
+  SET_CITY_DATA,
+  SET_CITY_IMAGE_DATA,
+  SET_CITY_NAMES,
+  SET_CITY_SCORE_DATA,
+} from './types';
 
 const initialState = {
   items: {
     cityNames: [],
     cityData: {
       basicData: {},
+      coordsData: {},
+      scoreData: {},
+      imageData: '',
     },
     isLoaded: false,
   },
@@ -16,11 +25,24 @@ export const citiesReducer = createReducer(initialState, {
     state.items.cityNames = action.payload;
     state.items.isLoaded = true;
   },
+
   [SET_CITY_DATA]: (state, action) => {
     state.items.cityData.basicData = action.payload;
+    state.items.isLoaded = true;
   },
-  [CLEAR_CITIES]: (state) => {
-    state.items.cityNames = [];
-    state.items.isLoaded = false;
+
+  [SET_CITY_COORDS_DATA]: (state, action) => {
+    state.items.cityData.coordsData = action.payload;
+    state.items.isLoaded = true;
+  },
+
+  [SET_CITY_IMAGE_DATA]: (state, action) => {
+    state.items.cityData.imageData = action.payload;
+    state.items.isLoaded = true;
+  },
+
+  [SET_CITY_SCORE_DATA]: (state, action) => {
+    state.items.cityData.scoreData = action.payload;
+    state.items.isLoaded = true;
   },
 });

@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { SearchInput } from '../SearchInput';
 import { clearCountriesItems } from '../../store/countries/actions';
-import { clearCities } from '../../store/cities/actions';
 
 export const Header: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch();
@@ -15,7 +14,6 @@ export const Header: React.FC = (): React.ReactElement => {
 
   const logoClickHandler = () => {
     dispatch(clearCountriesItems());
-    dispatch(clearCities());
   };
 
   return (
@@ -30,7 +28,7 @@ export const Header: React.FC = (): React.ReactElement => {
         </div>
 
         <div className={classes.headerAllCitiesLink}>
-          <Link to="/citiesAll">All cities</Link>
+          <Link to="/citiesAll/Moscow">All cities</Link>
         </div>
       </Container>
     </div>

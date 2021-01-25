@@ -3,25 +3,38 @@ import { useDispatch } from 'react-redux';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 
 import { useCitiesAllStyles } from '../../pages/CitiesAll/theme';
-import { fetchCitiesData } from '../../store/cities/actions';
+import {
+  fetchCitiesCoordsData,
+  fetchCitiesData,
+  fetchCitiesImagesData,
+  fetchCitiesScoresData,
+} from '../../store/cities/actions';
+import { CityCurrentNameType, ICityNames } from '../../store/cities/types';
+import { useHistory } from 'react-router-dom';
 
 interface SelectBlockProps {
   classes: ReturnType<typeof useCitiesAllStyles>;
-  cityNames: Array<string>;
+  cityNames: ICityNames | any;
 }
 
 export const SelectBlock: React.FC<SelectBlockProps> = ({
   classes,
   cityNames,
 }: SelectBlockProps): React.ReactElement => {
-  const [selectView, setSelectView] = React.useState<boolean>(false);
-  const [cities, setCities] = React.useState<string>('Moscow');
-
+  const history = useHistory();
   const dispatch = useDispatch();
+  const pathname = history.location.pathname.slice(11);
+
+  const [selectView, setSelectView] = React.useState<boolean>(false);
+  const [cities, setCities] = React.useState<string>(pathname);
 
   React.useEffect(() => {
+    history.push(`/citiesAll/${cities}`);
     dispatch(fetchCitiesData(cities));
-  }, [dispatch, cities]);
+    dispatch(fetchCitiesCoordsData(cities));
+    dispatch(fetchCitiesImagesData(cities));
+    dispatch(fetchCitiesScoresData(cities));
+  }, [dispatch, cities, history]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setCities(event.target.value as string);
@@ -48,9 +61,9 @@ export const SelectBlock: React.FC<SelectBlockProps> = ({
           <MenuItem value="" disabled>
             Cities
           </MenuItem>
-          {cityNames.map((city) => (
-            <MenuItem key={city} value={city}>
-              {city}
+          {cityNames.map(({ name }: CityCurrentNameType) => (
+            <MenuItem key={name} value={name}>
+              {name}
             </MenuItem>
           ))}
         </Select>

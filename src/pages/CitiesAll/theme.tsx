@@ -1,38 +1,9 @@
 import { makeStyles } from '@material-ui/core/';
 
 export const useCitiesAllStyles = makeStyles((theme) => ({
-  // citiesAllContainer: {
-  //   margin: '50px auto 0px auto',
-  //   fontFamily: 'Ubuntu',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   height: 500,
-  //   flexWrap: 'wrap',
-  //   alignItems: 'center',
-  //   padding: 0,
-  // },
-  // citiyName: {
-  //   cursor: 'pointer',
-  //   paddingBottom: 15,
-  //   '&:hover': {
-  //     fontWeight: 800,
-  //   },
-  //   '&:active': {
-  //     transform: 'translateY(2px)',
-  //   },
-  // },
-  // citiesAllButtonWrapper: {
-  //   margin: '20px 0 0 0',
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  // },
-  // citiesAllButtonBack: {
-  //   borderRadius: 20,
-  //   padding: '5px 30px',
-  //   marginBottom: 20,
-  //   background: theme.palette.background.default,
-  // },
-  citiesAllWrapper: {},
+  citiesAllWrapper: {
+    paddingBottom: 50,
+  },
 
   citiesAllSelectWrapper: {
     position: 'relative',
@@ -76,8 +47,82 @@ export const useCitiesAllStyles = makeStyles((theme) => ({
     },
   },
   citiesAllYandexMap: {
-    marginTop: 50,
+    marginTop: 30,
     display: 'flex',
     justifyContent: 'center',
+  },
+
+  citiesAllInfoWrapper: {
+    marginTop: 15,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  citiesAllInfoRow: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  citiesAllInfoTitle: {
+    fontFamily: 'ubuntu',
+    textTransform: 'uppercase',
+    display: 'flex',
+    alignItems: 'center',
+    '& span': {
+      marginLeft: 10,
+      fontWeight: 800,
+    },
+    '& svg': {
+      marginRight: 3,
+      cursor: 'pointer',
+      '&:hover': {
+        transform: 'scale(1.1)',
+      },
+    },
+  },
+  citiesAllInfoSubTitle: {},
+  citiesAllInfoText: {
+    fontFamily: 'ubuntu',
+    lineHeight: 1.3,
+    marginTop: 45,
+  },
+  citiesAllBarGraph: {
+    marginTop: 100,
+  },
+  barGraphTitle: {
+    fontFamily: 'ubuntu',
+    textTransform: 'uppercase',
+    fontWeight: 600,
+    textAlign: 'center',
+    letterSpacing: 5,
+    fontSize: 35,
+  },
+  barGraphRow: {
+    position: 'relative',
+    width: '100%',
+    height: 50,
+    border: '1px solid #ccc',
+    borderRadius: '20px',
+    marginTop: 7,
+  },
+  barGraphRowCurrentScore: {
+    position: 'absolute',
+    borderRadius: '20px',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    width: '60%',
+    height: '100%',
+    background: 'purple',
+  },
+  barGraphInfoWrapper: {
+    marginTop: 25,
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  barGraphRowTitle: {
+    fontFamily: 'ubuntu',
+    textTransform: 'uppercase',
+    letterSpacing: 1.5,
   },
 }));

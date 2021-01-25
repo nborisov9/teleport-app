@@ -3,24 +3,46 @@ import { Dispatch } from 'redux';
 
 import { CitiesApi } from '../../services/api/citiesApi';
 
-import { CLEAR_CITIES, SET_CITY_DATA, SET_CITY_NAMES } from './types';
+import {
+  SET_CITY_COORDS_DATA,
+  SET_CITY_DATA,
+  SET_CITY_IMAGE_DATA,
+  SET_CITY_NAMES,
+  SET_CITY_SCORE_DATA,
+} from './types';
 
 export const fetchCities = () => (dispatch: Dispatch) => {
   CitiesApi.fetchCityNames()
-    .then(({ data }) => dispatch(setCityNames(data._embedded['city:search-results'])))
+    .then(({ data }) => dispatch(setCityNames(data._links['ua:item'])))
     .catch((e) => console.error(e));
 };
 
 export const fetchCitiesData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCitiesData(city)
-    .then((data) => {
-      dispatch(setCityData(data));
-    })
-    .catch((e) => console.error(e));
+  CitiesApi.fetchCityData(city).then((data) => dispatch(setCityData(data)));
+};
+
+export const fetchCitiesCoordsData = (city: string) => (dispatch: Dispatch) => {
+  CitiesApi.fetchCityCoordsData(city).then(({ data }) => dispatch(setCityCoordsData(data)));
+};
+
+export const fetchCitiesImagesData = (city: string) => (dispatch: Dispatch) => {
+  CitiesApi.fetchCityImageData(city).then(({ data }) =>
+    dispatch(setCityImageData(data.photos[0].image.web)),
+  );
+};
+
+export const fetchCitiesScoresData = (city: string) => (dispatch: Dispatch) => {
+  CitiesApi.fetchCityScoreData(city).then(({ data }) => {
+    dispatch(setCityScoreData(data));
+  });
 };
 
 export const setCityNames = createAction(SET_CITY_NAMES, (payload) => ({ payload }));
 
 export const setCityData = createAction(SET_CITY_DATA, (payload) => ({ payload }));
 
-export const clearCities = createAction(CLEAR_CITIES);
+export const setCityCoordsData = createAction(SET_CITY_COORDS_DATA, (payload) => ({ payload }));
+
+export const setCityImageData = createAction(SET_CITY_IMAGE_DATA, (payload) => ({ payload }));
+
+export const setCityScoreData = createAction(SET_CITY_SCORE_DATA, (payload) => ({ payload }));

@@ -8,6 +8,8 @@ import { CitiesAll } from './pages/CitiesAll';
 
 import './app.scss';
 
+// import { CitiesApi } from './services/api/citiesApi';
+
 const App: React.FC = (): React.ReactElement => {
   return (
     <Router>
@@ -15,7 +17,7 @@ const App: React.FC = (): React.ReactElement => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/countries" component={Home} />
-        <Route path="/citiesAll" component={CitiesAll} />
+        <Route path="/citiesAll/:city" component={CitiesAll} />
         <Redirect to="/" />
       </Switch>
     </Router>
@@ -23,3 +25,5 @@ const App: React.FC = (): React.ReactElement => {
 };
 
 export default App;
+
+// console.log(CitiesApi.fetchCityImageData('Moscow'));
