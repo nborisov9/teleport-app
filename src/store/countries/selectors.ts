@@ -1,16 +1,19 @@
 import { RootState } from '../store';
+import { ICountries, ICountriesDataName, ISalaryData } from './types';
 
-export const selectCountries = (state: RootState) => state.countries;
+export const selectCountries = (state: RootState): ICountries => state.countries;
 
-export const selectCountriesDataName = (state: RootState) => selectCountries(state).items.countries;
+export const selectCountriesDataName = (state: RootState): ICountriesDataName[] =>
+  selectCountries(state).items.countries;
 
 export const selectCountryBasicData = (state: RootState) =>
   selectCountries(state).items.countryData.basicData;
 
-export const selectCountrySalaryData = (state: RootState) =>
+export const selectCountrySalaryData = (state: RootState): ISalaryData[] =>
   selectCountries(state).items.countryData.salaryData;
 
-export const selectCountryDataLoadingState = (state: RootState) =>
+export const selectCountryDataLoadingState = (state: RootState): boolean =>
   selectCountries(state).items.countryData.isLoaded;
 
-export const selectCountriesLoadingState = (state: RootState) => selectCountries(state).isLoaded;
+export const selectCountriesLoadingState = (state: RootState): boolean =>
+  selectCountries(state).isLoaded;

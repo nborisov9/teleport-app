@@ -19,7 +19,6 @@ import {
   selectCitySalaryData,
   selectCityScoreData,
 } from '../../store/cities/selectors';
-import { ICityNames, IScoreData } from '../../store/cities/types';
 import { CitiesSalaryInfo } from '../../components/CitiesSalaryInfo';
 import { BarGraphBlock } from '../../components/BarGraphBlock';
 
@@ -31,11 +30,11 @@ export const CitiesAll: React.FC = (): React.ReactElement | null => {
     dispatch(fetchCities());
   }, [dispatch]);
 
-  const cityNames: ICityNames = useSelector(selectCityNames);
+  const cityNames = useSelector(selectCityNames);
   const cityBasicData = useSelector(selectCityBasicData);
   const cityCoordsData = useSelector(selectCityCoordsData);
   const cityImageData = useSelector(selectCityImageData);
-  const cityScoreData: IScoreData = useSelector(selectCityScoreData);
+  const cityScoreData = useSelector(selectCityScoreData);
   const citySalaryData = useSelector(selectCitySalaryData);
   const cityLoadingState = useSelector(selectCityLoadingState);
 

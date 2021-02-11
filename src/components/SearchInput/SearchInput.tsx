@@ -1,9 +1,8 @@
-import { InputAdornment } from '@material-ui/core';
 import React from 'react';
+import { InputAdornment } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
 import { SearchTextField } from '../SearchTextField';
-
-import SearchIcon from '@material-ui/icons/Search';
 import { useHomeStyles } from '../../pages/Home/theme';
 
 interface SearchInputProps {
@@ -17,10 +16,14 @@ export const SearchInput: React.FC<SearchInputProps> = ({
 }: SearchInputProps): React.ReactElement => {
   const [text, setText] = React.useState<string>('');
 
-  console.log(text);
-
   const hadnleTextValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setText(e.currentTarget.value);
+  };
+
+  const keyPressHandler = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      setText('');
+    }
   };
 
   return (
@@ -28,8 +31,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       className={classes.inputSearch}
       variant="outlined"
       onChange={hadnleTextValue}
+      onKeyPress={keyPressHandler}
       placeholder={placeHolder}
       size="small"
+      value={text}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">

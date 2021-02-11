@@ -38,9 +38,9 @@ export const CountriesAll: React.FC = (): React.ReactElement | null => {
   }, [dispatch, continentName]);
 
   const countries = useSelector(selectCountriesDataName);
-  const loadingState = useSelector(selectCountriesLoadingState);
   const countriesBasicData = useSelector(selectCountryBasicData);
   const countriesSalaryData = useSelector(selectCountrySalaryData);
+  const loadingState = useSelector(selectCountriesLoadingState);
   const loadingCountryData = useSelector(selectCountryDataLoadingState);
 
   const scrollToTop = () => {
