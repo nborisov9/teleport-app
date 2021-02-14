@@ -194,6 +194,14 @@ export const useHomeStyles = makeStyles((theme) => ({
     fontFamily: 'Ubuntu',
     textTransform: 'uppercase',
   },
+  countriesInfoTitleBold: {
+    marginTop: 30,
+    textAlign: 'center',
+    fontWeight: 600,
+  },
+  countriesInfoTitleMargin: {
+    marginTop: 30,
+  },
   countriesInfoIcon: {
     cursor: 'pointer',
     '&:hover': {
@@ -205,5 +213,13 @@ export const useHomeStyles = makeStyles((theme) => ({
   },
   countriesAllJobTitle: {
     fontWeight: 600,
+  },
+  loadingBlockWrapper: {
+    marginTop: 170,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  loadingBlockCircle: {
+    color: 'rgb(0, 103, 238)',
   },
 }));

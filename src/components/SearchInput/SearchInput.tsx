@@ -10,10 +10,7 @@ interface SearchInputProps {
   classes: ReturnType<typeof useHomeStyles>;
 }
 
-export const SearchInput: React.FC<SearchInputProps> = ({
-  placeHolder,
-  classes,
-}: SearchInputProps): React.ReactElement => {
+export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder, classes }) => {
   const [text, setText] = React.useState<string>('');
 
   const hadnleTextValue = (e: React.ChangeEvent<HTMLInputElement>): void => {

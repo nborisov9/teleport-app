@@ -10,12 +10,12 @@ export interface ICountryBasicData {
   population: number;
 }
 
-export interface ISalaryData {
+export interface ICountrySalaryData {
   job: {
-    id: string;
+    id?: string;
     title: string;
   };
-  salary_precentiles: {
+  salary_percentiles: {
     percentile_25: number;
     percentile_50: number;
     percentile_75: number;
@@ -27,7 +27,7 @@ export interface ICountries {
     countries: Array<ICountriesDataName>;
     countryData: {
       basicData: any;
-      salaryData: Array<ISalaryData>;
+      salaryData: Array<ICountrySalaryData>;
       isLoaded: boolean;
     };
   };

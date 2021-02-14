@@ -2,7 +2,7 @@ import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField/TextField';
 
-export const SearchTextField = withStyles((theme: Theme) => ({
+export const SearchTextField = withStyles(() => ({
   root: {
     '& .MuiOutlinedInput-root': {
       borderRadius: 30,

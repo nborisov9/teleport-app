@@ -9,11 +9,7 @@ interface YandexMapProps {
   longitude: number;
 }
 
-export const YandexMap: React.FC<YandexMapProps> = ({
-  latitude,
-  longitude,
-  classes,
-}: YandexMapProps): React.ReactElement => {
+export const YandexMap: React.FC<YandexMapProps> = ({ latitude, longitude, classes }) => {
   const [coords, setCoords] = React.useState<number[]>([]);
 
   React.useEffect(() => {

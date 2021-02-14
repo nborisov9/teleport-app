@@ -21,6 +21,10 @@ export const useCitiesAllStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
 
+  citiesSalaryInfo: {
+    marginTop: 80,
+  },
+
   selectFormControl: {
     width: 340,
     background: '#fff',
@@ -112,8 +116,6 @@ export const useCitiesAllStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     height: '100%',
-    // width: 100%,
-    // background: 'purple',
   },
   barGraphInfoWrapper: {
     marginTop: 25,

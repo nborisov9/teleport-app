@@ -12,20 +12,15 @@ interface ICountryBasicData {
   geoname_id: number;
   name: string;
   population: number;
-  iso_alpha2?: string;
-  iso_alpha3?: string;
-  _link?: any;
 }
 
 interface CountryBasicInfoProps {
-  classes: ReturnType<typeof useHomeStyles>;
   countriesBasicData: ICountryBasicData | any;
 }
 
-export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({
-  classes,
-  countriesBasicData,
-}: CountryBasicInfoProps): React.ReactElement => {
+export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({ countriesBasicData }) => {
+  const classes = useHomeStyles();
+
   return (
     <>
       <Typography variant="h6" className={classes.countriesInfoTitle}>

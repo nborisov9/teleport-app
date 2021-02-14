@@ -1,3 +1,3 @@
-import { SelectBlock } from './SelectBlock';
+import SelectBlock from './SelectBlock';
 
 export { SelectBlock };
