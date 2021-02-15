@@ -6,13 +6,15 @@ import {
   SET_COUNTRY_DATA,
   CLEAR_COUNTRY_DATA,
   CLEAR_COUNTRIES_ITEMS,
+  ICountries,
+  ICountryBasicData,
 } from './types';
 
-const initialState = {
+const initialState: ICountries = {
   items: {
     countries: [],
     countryData: {
-      basicData: {},
+      basicData: {} as ICountryBasicData,
       salaryData: [],
       isLoaded: false,
     },
@@ -38,14 +40,14 @@ export const countriesReducer = createReducer(initialState, {
   },
 
   [CLEAR_COUNTRY_DATA]: (state) => {
-    state.items.countryData.basicData = {};
+    state.items.countryData.basicData = {} as ICountryBasicData;
     state.items.countryData.salaryData = [];
     state.items.countryData.isLoaded = false;
   },
 
   [CLEAR_COUNTRIES_ITEMS]: (state) => {
     state.items.countries = [];
-    state.items.countryData.basicData = {};
+    state.items.countryData.basicData = {} as ICountryBasicData;
     state.items.countryData.salaryData = [];
     state.items.countryData.isLoaded = false;
     state.isLoaded = false;

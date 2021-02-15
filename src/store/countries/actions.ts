@@ -2,7 +2,6 @@ import { createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { CountriesApi } from '../../services/api/countriesApi';
-
 import {
   CLEAR_COUNTRIES_NAME,
   SET_COUNTRY_NAMES,
@@ -35,11 +34,9 @@ export const clearCountriesItems = createAction(CLEAR_COUNTRIES_ITEMS);
 
 export const setCountryNames = createAction(SET_COUNTRY_NAMES, (payload) => ({ payload }));
 
-export const setCountryData = createAction(SET_COUNTRY_DATA, (basicData, salaryData) => {
-  return {
-    payload: {
-      basicData,
-      salaryData,
-    },
-  };
-});
+export const setCountryData = createAction(SET_COUNTRY_DATA, (basicData, salaryData) => ({
+  payload: {
+    basicData,
+    salaryData,
+  },
+}));

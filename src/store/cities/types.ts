@@ -1,27 +1,20 @@
-export type CityCurrentNameType = {
+interface ICityCurrentName {
   href: string;
   name: string;
-};
+}
 
-export type ScoreDataType = {
+interface IScoreData {
   color: string;
   name: string;
   score_out_of_10: number;
-};
+}
 
-export type BasicDataType = {
+type IBasicData = {
   continent: string;
   full_name: string;
-  _links: any;
-  bounding_box: any;
-  is_government_partner: any;
-  name: any;
-  slug: any;
-  teleport_city_url: any;
-  ua_id: any;
 };
 
-export type CoordsDataType = {
+type ICoordsData = {
   location: {
     latlon: {
       latitude: number;
@@ -31,24 +24,24 @@ export type CoordsDataType = {
   population: number;
 };
 
-export interface ICityData {
-  basicData: BasicDataType | {};
-  coordsData: CoordsDataType | {};
+interface ICityData {
+  basicData: IBasicData;
+  coordsData: ICoordsData;
   imageData: string;
   salaryData: Array<ICitySalaryData>;
-  scoreData: IScoreData | {};
+  scoreData: IScoreData;
 }
 
-export interface IScoreData {
-  categories: Array<ScoreDataType>;
+interface IScoreData {
+  categories: Array<IScoreData>;
   summary: string;
 }
 
-export interface ICityNames {
-  cityNames: Array<CityCurrentNameType>;
+interface ICityNames {
+  cityNames: Array<ICityCurrentName>;
 }
 
-export interface ICitySalaryData {
+interface ICitySalaryData {
   job: {
     id?: string;
     title: string;
@@ -60,17 +53,37 @@ export interface ICitySalaryData {
   };
 }
 
-export interface ICities {
+interface ICities {
   items: {
-    cityData: any;
-    cityNames: Array<CityCurrentNameType>;
+    cityData: ICityData;
+    cityNames: Array<ICityCurrentName>;
     isLoaded: boolean;
   };
 }
 
-export const SET_CITY_NAMES: string = 'cities/SET_CITY_NAMES';
-export const SET_CITY_DATA: string = 'cities/SET_CITY_DATA';
-export const SET_CITY_COORDS_DATA: string = 'cities/SET_CITY_COORDS_DATA';
-export const SET_CITY_IMAGE_DATA: string = 'cities/SET_CITY_IMAGE_DATA';
-export const SET_CITY_SCORE_DATA: string = 'cities/SET_CITY_SCORE_DATA';
-export const SET_CITY_SALARY_DATA: string = 'cities/SET_CITY_SALARY_DATA';
+const SET_CITY_NAMES: string = 'cities/SET_CITY_NAMES';
+const SET_CITY_DATA: string = 'cities/SET_CITY_DATA';
+const SET_CITY_COORDS_DATA: string = 'cities/SET_CITY_COORDS_DATA';
+const SET_CITY_IMAGE_DATA: string = 'cities/SET_CITY_IMAGE_DATA';
+const SET_CITY_SCORE_DATA: string = 'cities/SET_CITY_SCORE_DATA';
+const SET_CITY_SALARY_DATA: string = 'cities/SET_CITY_SALARY_DATA';
+
+export {
+  SET_CITY_NAMES,
+  SET_CITY_DATA,
+  SET_CITY_COORDS_DATA,
+  SET_CITY_IMAGE_DATA,
+  SET_CITY_SCORE_DATA,
+  SET_CITY_SALARY_DATA,
+};
+
+export type {
+  ICityCurrentName,
+  IScoreData,
+  IBasicData,
+  ICoordsData,
+  ICityData,
+  ICityNames,
+  ICitySalaryData,
+  ICities,
+};

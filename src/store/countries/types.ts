@@ -1,16 +1,16 @@
-export interface ICountriesDataName {
+interface ICountriesDataName {
   href: string;
   name: string;
 }
 
-export interface ICountryBasicData {
+interface ICountryBasicData {
   name: string;
   currency_code: string;
   geoname_id: number;
   population: number;
 }
 
-export interface ICountrySalaryData {
+interface ICountrySalaryData {
   job: {
     id?: string;
     title: string;
@@ -22,11 +22,11 @@ export interface ICountrySalaryData {
   };
 }
 
-export interface ICountries {
+interface ICountries {
   items: {
     countries: Array<ICountriesDataName>;
     countryData: {
-      basicData: any;
+      basicData: ICountryBasicData;
       salaryData: Array<ICountrySalaryData>;
       isLoaded: boolean;
     };
@@ -34,8 +34,18 @@ export interface ICountries {
   isLoaded: boolean;
 }
 
-export const SET_COUNTRY_NAMES: string = 'countries/SET_COUNTRY_NAMES';
-export const SET_COUNTRY_DATA: string = 'countries/SET_COUNTRY_DATA';
-export const CLEAR_COUNTRIES_NAME: string = 'countries/CLEAR_COUNTRIES_NAME';
-export const CLEAR_COUNTRY_DATA: string = 'countries/CLEAR_COUNTRY_DATA';
-export const CLEAR_COUNTRIES_ITEMS: string = 'countries/CLEAR_COUNTRIES_ITEMS';
+const SET_COUNTRY_NAMES: string = 'countries/SET_COUNTRY_NAMES';
+const SET_COUNTRY_DATA: string = 'countries/SET_COUNTRY_DATA';
+const CLEAR_COUNTRIES_NAME: string = 'countries/CLEAR_COUNTRIES_NAME';
+const CLEAR_COUNTRY_DATA: string = 'countries/CLEAR_COUNTRY_DATA';
+const CLEAR_COUNTRIES_ITEMS: string = 'countries/CLEAR_COUNTRIES_ITEMS';
+
+export {
+  SET_COUNTRY_NAMES,
+  SET_COUNTRY_DATA,
+  CLEAR_COUNTRIES_NAME,
+  CLEAR_COUNTRY_DATA,
+  CLEAR_COUNTRIES_ITEMS,
+};
+
+export type { ICountriesDataName, ICountryBasicData, ICountrySalaryData, ICountries };

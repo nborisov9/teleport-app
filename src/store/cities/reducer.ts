@@ -1,5 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
+  IBasicData,
+  ICities,
+  ICoordsData,
+  IScoreData,
   SET_CITY_COORDS_DATA,
   SET_CITY_DATA,
   SET_CITY_IMAGE_DATA,
@@ -8,13 +12,13 @@ import {
   SET_CITY_SCORE_DATA,
 } from './types';
 
-const initialState = {
+const initialState: ICities = {
   items: {
     cityNames: [],
     cityData: {
-      basicData: {},
-      coordsData: {},
-      scoreData: {},
+      basicData: {} as IBasicData,
+      coordsData: {} as ICoordsData,
+      scoreData: {} as IScoreData,
       salaryData: [],
       imageData: '',
     },

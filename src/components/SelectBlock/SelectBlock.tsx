@@ -11,7 +11,7 @@ import {
   fetchCitiesSalariesData,
   fetchCitiesScoresData,
 } from '../../store/cities/actions';
-import { CityCurrentNameType, ICityNames } from '../../store/cities/types';
+import { ICityCurrentName, ICityNames } from '../../store/cities/types';
 
 interface SelectBlockProps {
   cityNames: ICityNames | any;
@@ -61,7 +61,7 @@ const SelectBlock: React.FC<SelectBlockProps> = ({ cityNames }) => {
           <MenuItem value="" disabled>
             Cities
           </MenuItem>
-          {cityNames.map(({ name }: CityCurrentNameType) => (
+          {cityNames.map(({ name }: ICityCurrentName) => (
             <MenuItem key={name} value={name}>
               {name}
             </MenuItem>

@@ -1,15 +1,6 @@
 import axios from 'axios';
 
-declare var process: {
-  env: {
-    REACT_APP_COUNTRIES: string;
-  };
-};
-
-interface ICountryData {
-  href: string;
-  name: string;
-}
+import { ICountriesDataName } from '../../store/countries/types';
 
 export const CountriesApi = {
   async fetchCountriesName(continent: string) {
@@ -18,13 +9,12 @@ export const CountriesApi = {
 
   async getCountriesBasicInfo(countriesName: string) {
     try {
-      const { data: allCountries } = await axios.get(process.env.REACT_APP_COUNTRIES);
-      const currentCountyHref = allCountries._links['country:items'].filter(
-        ({ name }: ICountryData) => name === countriesName,
+      const { data: allCountries } = await axios.get(process.env.REACT_APP_COUNTRIES!);
+      const currentCountryHref = allCountries._links['country:items'].filter(
+        ({ name }: ICountriesDataName) => name === countriesName,
       );
 
-      const { data: currentContryBasicInfo } = await axios.get(currentCountyHref[0].href);
-      return currentContryBasicInfo;
+      return await axios.get(currentCountryHref[0].href);
     } catch (e) {
       throw Error(e);
     }
@@ -32,9 +22,8 @@ export const CountriesApi = {
 
   async getCountriesSalariesInfo(countriesName: string) {
     try {
-      const contryData = await CountriesApi.getCountriesBasicInfo(countriesName);
-      const salariesData = await axios.get(contryData._links['country:salaries'].href);
-      return salariesData;
+      const { data: contryData } = await CountriesApi.getCountriesBasicInfo(countriesName);
+      return await axios.get(contryData._links['country:salaries'].href);
     } catch (e) {
       throw Error(e);
     }

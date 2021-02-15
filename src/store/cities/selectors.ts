@@ -1,8 +1,8 @@
 import { RootState } from '../store';
 import {
-  BasicDataType,
-  CityCurrentNameType,
-  CoordsDataType,
+  IBasicData,
+  ICityCurrentName,
+  ICoordsData,
   ICities,
   ICitySalaryData,
   IScoreData,
@@ -13,13 +13,13 @@ export const selectCities = (state: RootState): ICities => state.cities;
 export const selectCityLoadingState = (state: RootState): boolean =>
   selectCities(state).items.isLoaded;
 
-export const selectCityNames = (state: RootState): CityCurrentNameType[] =>
+export const selectCityNames = (state: RootState): ICityCurrentName[] =>
   selectCities(state).items.cityNames;
 
-export const selectCityBasicData = (state: RootState): BasicDataType =>
+export const selectCityBasicData = (state: RootState): IBasicData =>
   selectCities(state).items.cityData.basicData;
 
-export const selectCityCoordsData = (state: RootState): CoordsDataType =>
+export const selectCityCoordsData = (state: RootState): ICoordsData =>
   selectCities(state).items.cityData.coordsData;
 
 export const selectCityImageData = (state: RootState): string =>

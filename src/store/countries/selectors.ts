@@ -1,12 +1,12 @@
 import { RootState } from '../store';
-import { ICountries, ICountriesDataName, ICountrySalaryData } from './types';
+import { ICountries, ICountriesDataName, ICountryBasicData, ICountrySalaryData } from './types';
 
 export const selectCountries = (state: RootState): ICountries => state.countries;
 
 export const selectCountriesDataName = (state: RootState): ICountriesDataName[] =>
   selectCountries(state).items.countries;
 
-export const selectCountryBasicData = (state: RootState) =>
+export const selectCountryBasicData = (state: RootState): ICountryBasicData =>
   selectCountries(state).items.countryData.basicData;
 
 export const selectCountrySalaryData = (state: RootState): ICountrySalaryData[] =>

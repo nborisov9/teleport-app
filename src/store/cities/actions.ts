@@ -19,29 +19,33 @@ export const fetchCities = () => (dispatch: Dispatch) => {
 };
 
 export const fetchCitiesData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCityData(city).then((data) => dispatch(setCityData(data)));
+  CitiesApi.fetchCityData(city)
+    .then((data) => dispatch(setCityData(data)))
+    .catch((e) => console.error(e));
 };
 
 export const fetchCitiesCoordsData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCityCoordsData(city).then(({ data }) => dispatch(setCityCoordsData(data)));
+  CitiesApi.fetchCityCoordsData(city)
+    .then(({ data }) => dispatch(setCityCoordsData(data)))
+    .catch((e) => console.error(e));
 };
 
 export const fetchCitiesImagesData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCityImageData(city).then(({ data }) =>
-    dispatch(setCityImageData(data.photos[0].image.web)),
-  );
+  CitiesApi.fetchCityImageData(city)
+    .then(({ data }) => dispatch(setCityImageData(data.photos[0].image.web)))
+    .catch((e) => console.error(e));
 };
 
 export const fetchCitiesScoresData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCityScoreData(city).then(({ data }) => {
-    dispatch(setCityScoreData(data));
-  });
+  CitiesApi.fetchCityScoreData(city)
+    .then(({ data }) => dispatch(setCityScoreData(data)))
+    .catch((e) => console.error(e));
 };
 
 export const fetchCitiesSalariesData = (city: string) => (dispatch: Dispatch) => {
-  CitiesApi.fetchCitySalaryData(city).then(({ data }) =>
-    dispatch(setCitySalaryData(data.salaries)),
-  );
+  CitiesApi.fetchCitySalaryData(city)
+    .then(({ data }) => dispatch(setCitySalaryData(data.salaries)))
+    .catch((e) => console.error(e));
 };
 
 export const setCityNames = createAction(SET_CITY_NAMES, (payload) => ({ payload }));

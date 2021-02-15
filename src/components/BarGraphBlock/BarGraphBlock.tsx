@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useCitiesAllStyles } from '../../pages/CitiesAll/theme';
-import { ScoreDataType } from '../../store/cities/types';
+import { IScoreData } from '../../store/cities/types';
 
 interface IBarGraphBlock {
-  cityScoreData: Array<ScoreDataType>;
+  cityScoreData: Array<IScoreData>;
 }
 
 export const BarGraphBlock: React.FC<IBarGraphBlock> = ({ cityScoreData }) => {
@@ -16,7 +16,7 @@ export const BarGraphBlock: React.FC<IBarGraphBlock> = ({ cityScoreData }) => {
   return (
     <div className={classes.citiesAllBarGraph}>
       <div className={classes.barGraphTitle}>Score</div>
-      {cityScoreData.map(({ name, score_out_of_10, color }: ScoreDataType) => (
+      {cityScoreData.map(({ name, score_out_of_10, color }: IScoreData) => (
         <div key={name}>
           <div className={classes.barGraphInfoWrapper}>
             <div className={classes.barGraphRowTitle}>{name}</div>

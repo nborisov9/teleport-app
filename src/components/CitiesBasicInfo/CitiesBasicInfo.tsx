@@ -4,10 +4,10 @@ import IconPublic from '@material-ui/icons/Public';
 import IconTitle from '@material-ui/icons/Title';
 
 import { useCitiesAllStyles } from '../../pages/CitiesAll/theme';
-import { BasicDataType } from '../../store/cities/types';
+import { IBasicData } from '../../store/cities/types';
 
 interface CitiesBasicInfoProps {
-  cityBasicData: BasicDataType;
+  cityBasicData: IBasicData;
   cityPopulationData: number;
   citySummaryData: string;
 }
