@@ -218,6 +218,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     marginTop: 170,
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   loadingBlockCircle: {
     color: 'rgb(0, 103, 238)',

@@ -17,7 +17,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder, classes }
     setText(e.currentTarget.value);
   };
 
-  const keyPressHandler = (e: React.KeyboardEvent) => {
+  const keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       setText('');
     }

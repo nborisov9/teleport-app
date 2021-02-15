@@ -1,25 +1,16 @@
-import React from 'react';
-
 import { Typography } from '@material-ui/core';
-import { useHomeStyles } from '../../pages/Home/theme';
-import IconPopulation from '@material-ui/icons/People';
-import IconMoney from '@material-ui/icons/AttachMoney';
-import IconPublic from '@material-ui/icons/Public';
-import IconTitle from '@material-ui/icons/Title';
 
-interface ICountryBasicData {
-  currency_code: string;
-  geoname_id: number;
-  name: string;
-  population: number;
-}
+import { useHomeStyles } from '../../pages/Home/theme';
+import { ICountryBasicData } from '../../store/countries/types';
+import { getCountryData } from '../../utils';
 
 interface CountryBasicInfoProps {
-  countriesBasicData: ICountryBasicData | any;
+  countriesBasicData: ICountryBasicData;
 }
 
 export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({ countriesBasicData }) => {
   const classes = useHomeStyles();
+  const { dataCountry } = getCountryData(countriesBasicData, classes);
 
   return (
     <>
@@ -27,34 +18,15 @@ export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({ countriesBas
         basic info
       </Typography>
       <div className={classes.countriesInfoWrapper}>
-        <div className={classes.countryInfoName}>
-          <span>
-            <IconTitle className={classes.countriesInfoIcon} />
-            name:
-          </span>
-          {countriesBasicData.name}
-        </div>
-        <div className={classes.countryInfoName}>
-          <span>
-            <IconMoney className={classes.countriesInfoIcon} />
-            currency code:
-          </span>
-          {countriesBasicData.currency_code}
-        </div>
-        <div className={classes.countryInfoName}>
-          <span>
-            <IconPublic className={classes.countriesInfoIcon} />
-            geoname id:
-          </span>
-          {countriesBasicData.geoname_id}
-        </div>
-        <div className={classes.countryInfoName}>
-          <span>
-            <IconPopulation className={classes.countriesInfoIcon} />
-            population:
-          </span>
-          {countriesBasicData.population}
-        </div>
+        {dataCountry.map(({ title, icon, dataInfo }) => (
+          <div className={classes.countryInfoName} key={title}>
+            <span>
+              {icon}
+              {title}:
+            </span>
+            {dataInfo}
+          </div>
+        ))}
       </div>
     </>
   );

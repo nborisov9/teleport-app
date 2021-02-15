@@ -18,7 +18,7 @@ import {
 import CountriesListBlock from '../CountriesListBlock';
 import CountriesDataBlock from '../CountriesDataBlock';
 
-export const CountriesAll: React.FC = (): React.ReactElement | null => {
+export const CountriesAll: React.FC = () => {
   const [viewCountryData, setViewCountryData] = React.useState<boolean>(false);
 
   const classes = useHomeStyles();
@@ -27,10 +27,19 @@ export const CountriesAll: React.FC = (): React.ReactElement | null => {
 
   const historyPathname = history.location.pathname;
   const continentName = historyPathname.slice(11, 13);
+  const countryName = historyPathname.slice(14);
 
   React.useEffect(() => {
     dispatch(fetchCountries(continentName));
   }, [dispatch, continentName]);
+
+  React.useEffect(() => {
+    if (countryName) {
+      dispatch(fetchCountriesData(countryName));
+      setViewCountryData(true);
+      return;
+    }
+  }, [dispatch, countryName]);
 
   const countries = useSelector(selectCountriesDataName);
   const countriesBasicData = useSelector(selectCountryBasicData);

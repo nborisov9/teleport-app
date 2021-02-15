@@ -32,6 +32,8 @@ const CountriesListBlock: React.FC<CountriesListBlockProps> = ({
     dispatch(clearCountriesName());
   };
 
+  const activeStyleLink: React.CSSProperties = { fontWeight: 600, color: 'rgb(0, 103, 238)' };
+
   return (
     <Grid item xs>
       <Button onClick={buttonClickHandler} className={classes.buttonGoBack} variant="outlined">
@@ -45,9 +47,7 @@ const CountriesListBlock: React.FC<CountriesListBlockProps> = ({
       ) : (
         countiesList.map(({ name }) => (
           <div className={classes.countriesNames} key={name} onClick={() => countryHandler(name)}>
-            <NavLink
-              activeStyle={{ fontWeight: 600, color: 'rgb(0, 103, 238)' }}
-              to={`/countries/${continentName}/${name}`}>
+            <NavLink activeStyle={activeStyleLink} to={`/countries/${continentName}/${name}`}>
               {name}
             </NavLink>
           </div>

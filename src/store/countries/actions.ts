@@ -18,7 +18,7 @@ export const fetchCountries = (continent: string) => (dispatch: Dispatch) => {
 
 export const fetchCountriesData = (countryName: string) => async (dispatch: Dispatch) => {
   try {
-    const basicData = await CountriesApi.getCountriesBasicInfo(countryName);
+    const { data: basicData } = await CountriesApi.getCountriesBasicInfo(countryName);
     const { data: salaryData } = await CountriesApi.getCountriesSalariesInfo(countryName);
     dispatch(setCountryData(basicData, salaryData.salaries));
   } catch (e) {
