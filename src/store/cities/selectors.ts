@@ -10,9 +10,6 @@ import {
 
 export const selectCities = (state: RootState): ICities => state.cities;
 
-export const selectCityLoadingState = (state: RootState): boolean =>
-  selectCities(state).items.isLoaded;
-
 export const selectCityNames = (state: RootState): ICityCurrentName[] =>
   selectCities(state).items.cityNames;
 
@@ -30,3 +27,6 @@ export const selectCityScoreData = (state: RootState): IScoreData =>
 
 export const selectCitySalaryData = (state: RootState): ICitySalaryData[] =>
   selectCities(state).items.cityData.salaryData;
+
+export const selectCityLoadingState = (state: RootState): boolean =>
+  selectCities(state).items.isLoaded;

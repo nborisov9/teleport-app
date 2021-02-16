@@ -9,7 +9,6 @@ import { clearCountriesItems } from '../../store/countries/actions';
 
 export const Header: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch();
-
   const classes = useHomeStyles();
 
   const logoClickHandler = () => {
@@ -20,7 +19,7 @@ export const Header: React.FC = (): React.ReactElement => {
     <div className={classes.headerWrapper}>
       <Container className={classes.headerContainer} maxWidth="lg">
         <div className={classes.headerSearch}>
-          <SearchInput placeHolder="поиск" classes={classes} />
+          <SearchInput placeHolder="search" />
         </div>
 
         <div className={classes.headerLogo} onClick={logoClickHandler}>
@@ -28,7 +27,7 @@ export const Header: React.FC = (): React.ReactElement => {
         </div>
 
         <div className={classes.headerAllCitiesLink}>
-          <Link to="/citiesAll/Moscow">All cities</Link>
+          <Link to="/citiesAll/Moscow">My cities</Link>
         </div>
       </Container>
     </div>

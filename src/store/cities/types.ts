@@ -68,6 +68,18 @@ const SET_CITY_IMAGE_DATA: string = 'cities/SET_CITY_IMAGE_DATA';
 const SET_CITY_SCORE_DATA: string = 'cities/SET_CITY_SCORE_DATA';
 const SET_CITY_SALARY_DATA: string = 'cities/SET_CITY_SALARY_DATA';
 
+type TCitiesPayloads =
+  | ICityCurrentName
+  | IBasicData
+  | ICoordsData
+  | string
+  | IScoreData
+  | ICitySalaryData;
+
+interface ICityPayload {
+  payload: TCitiesPayloads;
+}
+
 export {
   SET_CITY_NAMES,
   SET_CITY_DATA,
@@ -86,4 +98,6 @@ export type {
   ICityNames,
   ICitySalaryData,
   ICities,
+  TCitiesPayloads,
+  ICityPayload,
 };

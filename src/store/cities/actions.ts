@@ -10,6 +10,8 @@ import {
   SET_CITY_NAMES,
   SET_CITY_SALARY_DATA,
   SET_CITY_SCORE_DATA,
+  TCitiesPayloads,
+  ICityPayload,
 } from './types';
 
 export const fetchCities = () => (dispatch: Dispatch) => {
@@ -48,14 +50,16 @@ export const fetchCitiesSalariesData = (city: string) => (dispatch: Dispatch) =>
     .catch((e) => console.error(e));
 };
 
-export const setCityNames = createAction(SET_CITY_NAMES, (payload) => ({ payload }));
+const handlePayload = (payload: TCitiesPayloads): ICityPayload => ({ payload });
 
-export const setCityData = createAction(SET_CITY_DATA, (payload) => ({ payload }));
+export const setCityNames = createAction(SET_CITY_NAMES, handlePayload);
 
-export const setCityCoordsData = createAction(SET_CITY_COORDS_DATA, (payload) => ({ payload }));
+export const setCityData = createAction(SET_CITY_DATA, handlePayload);
 
-export const setCityImageData = createAction(SET_CITY_IMAGE_DATA, (payload) => ({ payload }));
+export const setCityCoordsData = createAction(SET_CITY_COORDS_DATA, handlePayload);
 
-export const setCityScoreData = createAction(SET_CITY_SCORE_DATA, (payload) => ({ payload }));
+export const setCityImageData = createAction(SET_CITY_IMAGE_DATA, handlePayload);
 
-export const setCitySalaryData = createAction(SET_CITY_SALARY_DATA, (payload) => ({ payload }));
+export const setCityScoreData = createAction(SET_CITY_SCORE_DATA, handlePayload);
+
+export const setCitySalaryData = createAction(SET_CITY_SALARY_DATA, handlePayload);
