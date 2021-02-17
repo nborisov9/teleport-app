@@ -41,12 +41,15 @@ export const useHomeStyles = makeStyles((theme) => ({
     left: 0,
     cursor: 'pointer',
     maxHeight: 150,
-    width: 200,
+    width: '100%',
     overflowY: 'auto',
     background: '#fff',
     border: '1px solid #ccc',
     boxShadow: '5px 5px 8px 0px rgba(34, 60, 80, 0.2)',
     '& li': {
+      '&:hover': {
+        background: 'rgba(184, 184, 184, 0.2)',
+      },
       '&:last-child': {
         margin: '0',
         borderBottom: 'none',
@@ -55,8 +58,14 @@ export const useHomeStyles = makeStyles((theme) => ({
       padding: 7,
     },
   },
+  citiesLinkActive: {
+    background: 'rgba(184, 184, 184, 0.5)',
+  },
+  citiesLink: {},
+  citiesListLink: {},
   citiesListNotFound: {
     position: 'absolute',
+    zIndex: 999,
     top: 45,
     left: 0,
     color: 'rgba(0, 0, 0, 0.5)',
@@ -64,7 +73,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     background: '#fff',
-    border: '2px solid #fa655780',
+    border: '2px solid #fa655740',
     boxShadow: '5px 5px 8px 0px rgba(34, 60, 80, 0.2)',
     borderRadius: 5,
     width: 200,

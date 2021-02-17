@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -7,6 +7,8 @@ import { SearchTextField } from '../SearchTextField';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { fetchCities } from '../../store/cities/actions';
 import CitiesList from '../CitiesList';
+import { selectCityNames } from '../../store/cities/selectors';
+import { scrollElement } from '../../utils';
 
 interface SearchInputProps {
   placeHolder: string;
@@ -15,10 +17,18 @@ interface SearchInputProps {
 export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const [text, setText] = React.useState<string>('');
   const [isCitiesList, setIsCitiesList] = React.useState<boolean>(false);
-  const inputRef = React.useRef<any>(null);
+  const [currentCursor, setCurrentCursor] = React.useState<number>(0);
+
+  const inputRef = React.useRef<HTMLDivElement>(null);
+  const citiesListRef = React.useRef<HTMLUListElement>(null);
 
   const classes = useHomeStyles();
   const dispatch = useDispatch();
+  const cities = useSelector(selectCityNames);
+
+  const filterCitiesList = cities.filter(({ name }) =>
+    name.toLowerCase().includes(text.toLowerCase()),
+  );
 
   const clickOutSide = (event: MouseEvent) => {
     const path = event.composedPath();
@@ -36,6 +46,17 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
     return () => document.body.removeEventListener('click', clickOutSide);
   }, []);
 
+  const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'ArrowDown' && currentCursor < filterCitiesList.length - 1) {
+      setCurrentCursor((prev) => prev + 1);
+      scrollElement(citiesListRef, 'increment');
+    }
+    if (e.key === 'ArrowUp' && currentCursor > 0) {
+      setCurrentCursor((prev) => prev - 1);
+      scrollElement(citiesListRef, 'decrement');
+    }
+  };
+
   const hadnleTextValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value);
     if (text.trim().length > 0) {
@@ -45,14 +66,17 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
 
   const keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      setText('');
+      // setText('');
+      filterCitiesList.length && setText(filterCitiesList[currentCursor].name);
       setIsCitiesList(false);
+      setCurrentCursor(0);
     }
   };
 
   const setTextHandler = (name: string) => {
     setText(name);
     setIsCitiesList(false);
+    setCurrentCursor(0);
   };
 
   return (
@@ -62,6 +86,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
         variant="outlined"
         onChange={hadnleTextValue}
         onKeyPress={keyPressHandler}
+        onKeyDown={keyDownHandler}
         placeholder={placeHolder}
         size="small"
         value={text}
@@ -74,7 +99,13 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
         }}
         fullWidth
       />
-      <CitiesList textInput={text} isCitiesList={isCitiesList} setTextHandler={setTextHandler} />
+      <CitiesList
+        referenceNode={citiesListRef}
+        filterList={filterCitiesList}
+        cursor={currentCursor}
+        isCitiesList={isCitiesList}
+        setTextHandler={setTextHandler}
+      />
     </div>
   );
 };

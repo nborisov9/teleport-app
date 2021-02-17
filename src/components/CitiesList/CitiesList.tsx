@@ -1,30 +1,34 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import SadSmileIcon from '@material-ui/icons/SentimentDissatisfied';
 
 import { useHomeStyles } from '../../pages/Home/theme';
-import { selectCityNames } from '../../store/cities/selectors';
+import { ICityCurrentName } from '../../store/cities/types';
 
 interface ICitiesListProps {
+  referenceNode: React.RefObject<HTMLUListElement>;
   isCitiesList: boolean;
+  filterList: ICityCurrentName[];
+  cursor: number;
   setTextHandler: (name: string) => void;
-  textInput: string;
 }
 
-const CitiesList: React.FC<ICitiesListProps> = ({ isCitiesList, setTextHandler, textInput }) => {
+const CitiesList: React.FC<ICitiesListProps> = ({
+  referenceNode,
+  isCitiesList,
+  filterList,
+  cursor,
+  setTextHandler,
+}) => {
   const classes = useHomeStyles();
 
-  const cities = useSelector(selectCityNames);
-
-  const filterCitiesList = cities.filter(({ name }) =>
-    name.toLowerCase().includes(textInput.toLowerCase()),
-  );
+  const checkClassActive = (index: number) =>
+    cursor === index ? `${classes.citiesLinkActive} ${classes.citiesLink}` : classes.citiesLink;
 
   if (!isCitiesList) {
     return null;
   }
 
-  if (!filterCitiesList.length) {
+  if (!filterList.length) {
     return (
       <div className={classes.citiesListNotFound}>
         <span>No matches</span> <SadSmileIcon />
@@ -33,9 +37,9 @@ const CitiesList: React.FC<ICitiesListProps> = ({ isCitiesList, setTextHandler, 
   }
 
   return (
-    <ul className={classes.citiesListWrapper}>
-      {filterCitiesList.map(({ name }) => (
-        <li key={name} onClick={() => setTextHandler(name)}>
+    <ul className={classes.citiesListWrapper} ref={referenceNode}>
+      {filterList.map(({ name }, index) => (
+        <li key={name} className={checkClassActive(index)} onClick={() => setTextHandler(name)}>
           {name}
         </li>
       ))}
