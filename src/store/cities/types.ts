@@ -1,4 +1,4 @@
-interface ICityCurrentName {
+interface ICityName {
   href: string;
   name: string;
 }
@@ -38,7 +38,7 @@ interface IScoreData {
 }
 
 interface ICityNames {
-  cityNames: Array<ICityCurrentName>;
+  cityNames: Array<ICityName>;
 }
 
 interface ICitySalaryData {
@@ -56,7 +56,7 @@ interface ICitySalaryData {
 interface ICities {
   items: {
     cityData: ICityData;
-    cityNames: Array<ICityCurrentName>;
+    cityNames: Array<ICityName>;
     isLoaded: boolean;
   };
 }
@@ -68,13 +68,7 @@ const SET_CITY_IMAGE_DATA: string = 'cities/SET_CITY_IMAGE_DATA';
 const SET_CITY_SCORE_DATA: string = 'cities/SET_CITY_SCORE_DATA';
 const SET_CITY_SALARY_DATA: string = 'cities/SET_CITY_SALARY_DATA';
 
-type TCitiesPayloads =
-  | ICityCurrentName
-  | IBasicData
-  | ICoordsData
-  | string
-  | IScoreData
-  | ICitySalaryData;
+type TCitiesPayloads = ICityName | IBasicData | ICoordsData | string | IScoreData | ICitySalaryData;
 
 interface ICityPayload {
   payload: TCitiesPayloads;
@@ -90,7 +84,7 @@ export {
 };
 
 export type {
-  ICityCurrentName,
+  ICityName,
   IScoreData,
   IBasicData,
   ICoordsData,

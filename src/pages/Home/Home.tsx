@@ -4,7 +4,7 @@ import { CountriesAll } from '../../components/CountriesAll';
 
 import { WorldMap } from '../../components/WorldMap';
 
-export const Home: React.FC = () => (
+const Home: React.FC = () => (
   <>
     <Route exact path="/">
       <WorldMap />
@@ -14,3 +14,5 @@ export const Home: React.FC = () => (
     </Route>
   </>
 );
+
+export default Home;

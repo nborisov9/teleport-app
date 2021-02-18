@@ -1,3 +1,3 @@
-import { CitiesAll } from './CitiesAll';
+import CitiesAll from './CitiesAll';
 
-export { CitiesAll };
+export default CitiesAll;

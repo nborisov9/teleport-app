@@ -7,7 +7,7 @@ import { useHomeStyles } from '../../pages/Home/theme';
 import { SearchInput } from '../SearchInput';
 import { clearCountriesItems } from '../../store/countries/actions';
 
-export const Header: React.FC = (): React.ReactElement => {
+const Header: React.FC = (): React.ReactElement => {
   const dispatch = useDispatch();
   const classes = useHomeStyles();
 
@@ -33,3 +33,5 @@ export const Header: React.FC = (): React.ReactElement => {
     </div>
   );
 };
+
+export default Header;

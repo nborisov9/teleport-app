@@ -1,16 +1,9 @@
 import { RootState } from '../store';
-import {
-  IBasicData,
-  ICityCurrentName,
-  ICoordsData,
-  ICities,
-  ICitySalaryData,
-  IScoreData,
-} from './types';
+import { IBasicData, ICityName, ICoordsData, ICities, ICitySalaryData, IScoreData } from './types';
 
 export const selectCities = (state: RootState): ICities => state.cities;
 
-export const selectCityNames = (state: RootState): ICityCurrentName[] =>
+export const selectCityNames = (state: RootState): ICityName[] =>
   selectCities(state).items.cityNames;
 
 export const selectCityBasicData = (state: RootState): IBasicData =>

@@ -52,7 +52,7 @@ export const WorldMap: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className={classes.worldMapWrapper}>
       <Typography variant="h5" className={classes.worldMapTitle}>
         {continentTitle}
       </Typography>
@@ -74,6 +74,6 @@ export const WorldMap: React.FC = () => {
           <AfricaSVG referenceNode={AFRef} />
         </Link>
       </ContinentsWrapperSVG>
-    </>
+    </div>
   );
 };

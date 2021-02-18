@@ -2,12 +2,12 @@ import React from 'react';
 import SadSmileIcon from '@material-ui/icons/SentimentDissatisfied';
 
 import { useHomeStyles } from '../../pages/Home/theme';
-import { ICityCurrentName } from '../../store/cities/types';
+import { ICityName } from '../../store/cities/types';
 
 interface ICitiesListProps {
   referenceNode: React.RefObject<HTMLUListElement>;
   isCitiesList: boolean;
-  filterList: ICityCurrentName[];
+  filterList: ICityName[];
   cursor: number;
   setTextHandler: (name: string) => void;
 }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ICityCurrentName } from '../../store/cities/types';
+import { ICityName } from '../../store/cities/types';
 
 export const CitiesApi = {
   async fetchCityNames() {
@@ -9,9 +9,7 @@ export const CitiesApi = {
 
   async fetchCityData(cityName: string) {
     return CitiesApi.fetchCityNames()
-      .then(({ data }) =>
-        data._links['ua:item'].filter(({ name }: ICityCurrentName) => name === cityName),
-      )
+      .then(({ data }) => data._links['ua:item'].filter(({ name }: ICityName) => name === cityName))
       .then((currentCity) => axios.get(currentCity[0].href))
       .then(({ data }) => data);
   },

@@ -1,11 +1,18 @@
 import { makeStyles } from '@material-ui/core/';
 
 export const useHomeStyles = makeStyles((theme) => ({
+  wrapper: {
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
   headerWrapper: {
     background:
       'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
     display: 'flex',
     padding: '10px 0',
+    boxShadow: '0px 3px 8px 0px rgba(34, 60, 80, 0.2)',
   },
   headerContainer: {
     display: 'flex',
@@ -62,7 +69,6 @@ export const useHomeStyles = makeStyles((theme) => ({
     background: 'rgba(184, 184, 184, 0.5)',
   },
   citiesLink: {},
-  citiesListLink: {},
   citiesListNotFound: {
     position: 'absolute',
     zIndex: 999,
@@ -96,18 +102,20 @@ export const useHomeStyles = makeStyles((theme) => ({
     },
   },
   worldMapTitle: {
-    marginTop: 40,
+    margin: '85px 0 30px 0',
     display: 'flex',
     justifyContent: 'center',
     fontFamily: 'Ubuntu',
     textTransform: 'uppercase',
     letterSpacing: '3px',
-    color: 'rgba(29, 29, 29, 0.8)',
+    color: 'rgba(29, 29, 29, 1)',
   },
   worldMapWrapper: {
     marginTop: 25,
     display: 'flex',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    flex: '1 0 auto',
   },
   northAmerica: {
     '&:hover': {
@@ -161,6 +169,8 @@ export const useHomeStyles = makeStyles((theme) => ({
   },
   countriesAllContainer: {
     padding: '30px 0 0 20px',
+    flex: '1 0 auto',
+    marginBottom: '60px',
   },
   countriesNames: {
     '& a': {
@@ -272,5 +282,22 @@ export const useHomeStyles = makeStyles((theme) => ({
   },
   loadingBlockCircle: {
     color: 'rgb(0, 103, 238)',
+  },
+  footerWrapper: {
+    background:
+      'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
+    boxShadow: '0px -3px 8px 0px rgba(34, 60, 80, 0.2)',
+    height: 50,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'ubuntu',
+  },
+  footerLink: {
+    cursor: 'pointer',
+    color: 'rgba(0, 0, 0, 1)',
+    '&:hover': {
+      color: 'rgb(19, 163, 247)',
+    },
   },
 }));
