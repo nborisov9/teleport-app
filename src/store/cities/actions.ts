@@ -2,7 +2,6 @@ import { createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { CitiesApi } from '../../services/api/citiesApi';
-
 import {
   SET_CITY_COORDS_DATA,
   SET_CITY_DATA,
@@ -12,39 +11,40 @@ import {
   SET_CITY_SCORE_DATA,
   TCitiesPayloads,
   ICityPayload,
+  CLEAR_CITY_ITEMS,
 } from './types';
 
-export const fetchCities = () => (dispatch: Dispatch) => {
+const fetchCities = () => (dispatch: Dispatch) => {
   CitiesApi.fetchCityNames()
     .then(({ data }) => dispatch(setCityNames(data._links['ua:item'])))
     .catch((e) => console.error(e));
 };
 
-export const fetchCitiesData = (city: string) => (dispatch: Dispatch) => {
+const fetchCitiesData = (city: string) => (dispatch: Dispatch) => {
   CitiesApi.fetchCityData(city)
     .then((data) => dispatch(setCityData(data)))
     .catch((e) => console.error(e));
 };
 
-export const fetchCitiesCoordsData = (city: string) => (dispatch: Dispatch) => {
+const fetchCitiesCoordsData = (city: string) => (dispatch: Dispatch) => {
   CitiesApi.fetchCityCoordsData(city)
     .then(({ data }) => dispatch(setCityCoordsData(data)))
     .catch((e) => console.error(e));
 };
 
-export const fetchCitiesImagesData = (city: string) => (dispatch: Dispatch) => {
+const fetchCitiesImagesData = (city: string) => (dispatch: Dispatch) => {
   CitiesApi.fetchCityImageData(city)
     .then(({ data }) => dispatch(setCityImageData(data.photos[0].image.web)))
     .catch((e) => console.error(e));
 };
 
-export const fetchCitiesScoresData = (city: string) => (dispatch: Dispatch) => {
+const fetchCitiesScoresData = (city: string) => (dispatch: Dispatch) => {
   CitiesApi.fetchCityScoreData(city)
     .then(({ data }) => dispatch(setCityScoreData(data)))
     .catch((e) => console.error(e));
 };
 
-export const fetchCitiesSalariesData = (city: string) => (dispatch: Dispatch) => {
+const fetchCitiesSalariesData = (city: string) => (dispatch: Dispatch) => {
   CitiesApi.fetchCitySalaryData(city)
     .then(({ data }) => dispatch(setCitySalaryData(data.salaries)))
     .catch((e) => console.error(e));
@@ -52,14 +52,26 @@ export const fetchCitiesSalariesData = (city: string) => (dispatch: Dispatch) =>
 
 const handlePayload = (payload: TCitiesPayloads): ICityPayload => ({ payload });
 
-export const setCityNames = createAction(SET_CITY_NAMES, handlePayload);
+const setCityNames = createAction(SET_CITY_NAMES, handlePayload);
+const setCityData = createAction(SET_CITY_DATA, handlePayload);
+const setCityCoordsData = createAction(SET_CITY_COORDS_DATA, handlePayload);
+const setCityImageData = createAction(SET_CITY_IMAGE_DATA, handlePayload);
+const setCityScoreData = createAction(SET_CITY_SCORE_DATA, handlePayload);
+const setCitySalaryData = createAction(SET_CITY_SALARY_DATA, handlePayload);
+const clearCityItems = createAction(CLEAR_CITY_ITEMS);
 
-export const setCityData = createAction(SET_CITY_DATA, handlePayload);
-
-export const setCityCoordsData = createAction(SET_CITY_COORDS_DATA, handlePayload);
-
-export const setCityImageData = createAction(SET_CITY_IMAGE_DATA, handlePayload);
-
-export const setCityScoreData = createAction(SET_CITY_SCORE_DATA, handlePayload);
-
-export const setCitySalaryData = createAction(SET_CITY_SALARY_DATA, handlePayload);
+export {
+  setCityNames,
+  setCityData,
+  setCityCoordsData,
+  setCityImageData,
+  setCityScoreData,
+  setCitySalaryData,
+  clearCityItems,
+  fetchCities,
+  fetchCitiesData,
+  fetchCitiesCoordsData,
+  fetchCitiesImagesData,
+  fetchCitiesScoresData,
+  fetchCitiesSalariesData,
+};

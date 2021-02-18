@@ -21,7 +21,7 @@ import { BarGraphBlock } from '../../components/BarGraphBlock';
 import SelectBlockWrapper from '../../components/SelectBlockWrapper';
 import CitiesBasicInfo from '../../components/CitiesBasicInfo';
 
-const CitiesAll: React.FC = (): React.ReactElement | null => {
+const CitiesAll: React.FC = () => {
   const classes = useCitiesAllStyles();
   const dispatch = useDispatch();
 

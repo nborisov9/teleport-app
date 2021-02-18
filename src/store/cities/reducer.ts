@@ -10,6 +10,7 @@ import {
   SET_CITY_NAMES,
   SET_CITY_SALARY_DATA,
   SET_CITY_SCORE_DATA,
+  CLEAR_CITY_ITEMS,
 } from './types';
 
 const initialState: ICities = {
@@ -55,5 +56,14 @@ export const citiesReducer = createReducer(initialState, {
   [SET_CITY_SALARY_DATA]: (state, action) => {
     state.items.cityData.salaryData = action.payload;
     state.items.isLoaded = true;
+  },
+  [CLEAR_CITY_ITEMS]: (state) => {
+    state.items.cityNames = [];
+    state.items.cityData.basicData = {} as IBasicData;
+    state.items.cityData.coordsData = {} as ICoordsData;
+    state.items.cityData.scoreData = {} as IScoreData;
+    state.items.cityData.salaryData = [];
+    state.items.cityData.imageData = '';
+    state.items.isLoaded = false;
   },
 });

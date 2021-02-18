@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { CountriesAll } from '../../components/CountriesAll';
 
+import { CountriesAll } from '../../components/CountriesAll';
 import { WorldMap } from '../../components/WorldMap';
 
 const Home: React.FC = () => (
