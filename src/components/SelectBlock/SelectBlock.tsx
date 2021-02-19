@@ -4,13 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { FormControl, MenuItem, Select } from '@material-ui/core';
 
 import { useCitiesAllStyles } from '../../pages/CitiesAll/theme';
-import {
-  fetchCitiesCoordsData,
-  fetchCitiesData,
-  fetchCitiesImagesData,
-  fetchCitiesSalariesData,
-  fetchCitiesScoresData,
-} from '../../store/cities/actions';
 import { ICityName, ICityNames } from '../../store/cities/types';
 
 interface SelectBlockProps {
@@ -29,11 +22,6 @@ const SelectBlock: React.FC<SelectBlockProps> = ({ cityNames }) => {
 
   React.useEffect(() => {
     history.push(`/citiesAll/${cities}`);
-    dispatch(fetchCitiesData(cities));
-    dispatch(fetchCitiesCoordsData(cities));
-    dispatch(fetchCitiesImagesData(cities));
-    dispatch(fetchCitiesScoresData(cities));
-    dispatch(fetchCitiesSalariesData(cities));
   }, [dispatch, cities, history]);
 
   const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {

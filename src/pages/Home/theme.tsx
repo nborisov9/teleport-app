@@ -275,10 +275,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     fontWeight: 600,
   },
   loadingBlockWrapper: {
-    marginTop: 170,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    flex: '1 0 auto',
   },
   loadingBlockCircle: {
     color: 'rgb(0, 103, 238)',

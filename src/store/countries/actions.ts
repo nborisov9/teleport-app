@@ -27,13 +27,9 @@ export const fetchCountriesData = (countryName: string) => async (dispatch: Disp
 };
 
 export const clearCountriesName = createAction(CLEAR_COUNTRIES_NAME);
-
 export const clearCountryData = createAction(CLEAR_COUNTRY_DATA);
-
 export const clearCountriesItems = createAction(CLEAR_COUNTRIES_ITEMS);
-
 export const setCountryNames = createAction(SET_COUNTRY_NAMES, (payload) => ({ payload }));
-
 export const setCountryData = createAction(SET_COUNTRY_DATA, (basicData, salaryData) => ({
   payload: {
     basicData,

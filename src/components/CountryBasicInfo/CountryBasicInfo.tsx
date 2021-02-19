@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 
 import { useHomeStyles } from '../../pages/Home/theme';
 import { ICountryBasicData } from '../../store/countries/types';
-import { getCountryData } from '../../utils';
+import { getCountryData } from '../../utils/countryData';
 
 interface CountryBasicInfoProps {
   countriesBasicData: ICountryBasicData;

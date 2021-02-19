@@ -43,7 +43,7 @@ const CountriesListBlock: React.FC<CountriesListBlockProps> = ({
         countries - {continentName}
       </Typography>
       {!loadingState ? (
-        <LoadingBlock size={60} />
+        <LoadingBlock size={60} marginTop={170} />
       ) : (
         countiesList.map(({ name }) => (
           <div className={classes.countriesNames} key={name} onClick={() => countryHandler(name)}>

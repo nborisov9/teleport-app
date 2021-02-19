@@ -30,6 +30,7 @@ interface ICityData {
   imageData: string;
   salaryData: Array<ICitySalaryData>;
   scoreData: IScoreData;
+  isLoaded: boolean;
 }
 
 interface IScoreData {
@@ -69,21 +70,9 @@ interface ICityPayload {
 
 const SET_CITY_NAMES: string = 'cities/SET_CITY_NAMES';
 const SET_CITY_DATA: string = 'cities/SET_CITY_DATA';
-const SET_CITY_COORDS_DATA: string = 'cities/SET_CITY_COORDS_DATA';
-const SET_CITY_IMAGE_DATA: string = 'cities/SET_CITY_IMAGE_DATA';
-const SET_CITY_SCORE_DATA: string = 'cities/SET_CITY_SCORE_DATA';
-const SET_CITY_SALARY_DATA: string = 'cities/SET_CITY_SALARY_DATA';
-const CLEAR_CITY_ITEMS: string = 'cities/CLEAR_CITY_ITEMS';
+const CLEAR_CITY_DATA: string = 'cities/CLEAR_CITY_DATA';
 
-export {
-  SET_CITY_NAMES,
-  SET_CITY_DATA,
-  SET_CITY_COORDS_DATA,
-  SET_CITY_IMAGE_DATA,
-  SET_CITY_SCORE_DATA,
-  SET_CITY_SALARY_DATA,
-  CLEAR_CITY_ITEMS,
-};
+export { SET_CITY_NAMES, SET_CITY_DATA, CLEAR_CITY_DATA };
 
 export type {
   ICityName,

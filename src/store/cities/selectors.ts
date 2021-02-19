@@ -21,5 +21,8 @@ export const selectCityScoreData = (state: RootState): IScoreData =>
 export const selectCitySalaryData = (state: RootState): ICitySalaryData[] =>
   selectCities(state).items.cityData.salaryData;
 
-export const selectCityLoadingState = (state: RootState): boolean =>
+export const selectCityDataLoadingState = (state: RootState): boolean =>
+  selectCities(state).items.cityData.isLoaded;
+
+export const selectCityNamesLoadingState = (state: RootState): boolean =>
   selectCities(state).items.isLoaded;

@@ -21,11 +21,9 @@ const Header: React.FC = (): React.ReactElement => {
         <div className={classes.headerSearch}>
           <SearchInput placeHolder="search" />
         </div>
-
         <div className={classes.headerLogo} onClick={logoClickHandler}>
           <Link to="/">Teleport-app</Link>
         </div>
-
         <div className={classes.headerAllCitiesLink}>
           <Link to="/citiesAll/Moscow">My cities</Link>
         </div>

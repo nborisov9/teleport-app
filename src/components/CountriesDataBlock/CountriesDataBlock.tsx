@@ -30,7 +30,7 @@ const CountriesDataBlock: React.FC<CountriesDataBlockProps> = ({
     <Grid item xs>
       {viewCountryData ? (
         !loadingCountryData ? (
-          <LoadingBlock size={60} />
+          <LoadingBlock size={60} marginTop={170} />
         ) : (
           <>
             <CountryBasicInfo countriesBasicData={countriesBasicData} />

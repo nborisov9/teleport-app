@@ -8,7 +8,8 @@ import { useHomeStyles } from '../../pages/Home/theme';
 import { fetchCities } from '../../store/cities/actions';
 import CitiesList from '../CitiesList';
 import { selectCityNames } from '../../store/cities/selectors';
-import { scrollElement } from '../../utils';
+import { ARROW_DOWN, ARROW_UP } from '../../helpers/consts';
+import { scrollElement } from '../../utils/scroll';
 
 interface SearchInputProps {
   placeHolder: string;
@@ -16,7 +17,8 @@ interface SearchInputProps {
 
 export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const [text, setText] = React.useState<string>('');
-  const [isCitiesList, setIsCitiesList] = React.useState<boolean>(false);
+  const [citiesList, setCitiesList] = React.useState<boolean>(false);
+  const [listNotFound, setListNotFound] = React.useState<boolean>(false);
   const [currentCursor, setCurrentCursor] = React.useState<number>(0);
 
   const inputRef = React.useRef<HTMLDivElement>(null);
@@ -33,9 +35,15 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const clickOutSide = (event: MouseEvent) => {
     const path = event.composedPath();
     if (inputRef.current && !path.includes(inputRef.current)) {
-      setIsCitiesList(false);
+      setCitiesList(false);
     }
   };
+
+  React.useEffect(() => {
+    if (cities.length) {
+      !filterCitiesList.length ? setListNotFound(true) : setListNotFound(false);
+    }
+  }, [filterCitiesList, cities]);
 
   React.useEffect(() => {
     dispatch(fetchCities());
@@ -47,12 +55,12 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   }, []);
 
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'ArrowDown' && currentCursor < filterCitiesList.length - 1) {
-      setCurrentCursor((prev) => prev + 1);
+    if (e.key === ARROW_DOWN && currentCursor < filterCitiesList.length - 1) {
+      setCurrentCursor((prevState) => prevState + 1);
       scrollElement(citiesListRef, 'increment');
     }
-    if (e.key === 'ArrowUp' && currentCursor > 0) {
-      setCurrentCursor((prev) => prev - 1);
+    if (e.key === ARROW_UP && currentCursor > 0) {
+      setCurrentCursor((prevState) => prevState - 1);
       scrollElement(citiesListRef, 'decrement');
     }
   };
@@ -60,22 +68,22 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const hadnleTextValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.currentTarget.value);
     if (text.trim().length > 0) {
-      setIsCitiesList(true);
+      setCitiesList(true);
     }
   };
 
   const keyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      // setText('');
       filterCitiesList.length && setText(filterCitiesList[currentCursor].name);
-      setIsCitiesList(false);
+      setCitiesList(false);
       setCurrentCursor(0);
+      setText('');
     }
   };
 
   const setTextHandler = (name: string) => {
     setText(name);
-    setIsCitiesList(false);
+    setCitiesList(false);
     setCurrentCursor(0);
   };
 
@@ -101,9 +109,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
       />
       <CitiesList
         referenceNode={citiesListRef}
+        listNotFound={listNotFound}
         filterList={filterCitiesList}
         cursor={currentCursor}
-        isCitiesList={isCitiesList}
+        citiesList={citiesList}
         setTextHandler={setTextHandler}
       />
     </div>
