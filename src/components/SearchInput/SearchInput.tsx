@@ -4,10 +4,10 @@ import { InputAdornment } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 
+import CitiesList from '../CitiesList';
 import { SearchTextField } from '../SearchTextField';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { fetchCities } from '../../store/cities/actions';
-import CitiesList from '../CitiesList';
 import { selectCityNames } from '../../store/cities/selectors';
 import { ARROW_DOWN, ARROW_UP, DECREMENT, ENTER, INCREMENT } from '../../helpers/consts';
 import { scrollElement } from '../../utils/scroll';

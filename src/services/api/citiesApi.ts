@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ICityName } from '../../store/cities/types';
 
-export const CitiesApi = {
+const CitiesApi = {
   async fetchCityNames() {
     return axios.get(process.env.REACT_APP_URBAN_AREAS!);
   },
@@ -38,3 +38,5 @@ export const CitiesApi = {
     );
   },
 };
+
+export { CitiesApi };

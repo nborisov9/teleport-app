@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ICountriesDataName } from '../../store/countries/types';
 
-export const CountriesApi = {
+const CountriesApi = {
   async fetchCountriesName(continent: string) {
     return axios.get(`https://api.teleport.org/api/continents/geonames:${continent}/countries/`);
   },
@@ -29,3 +29,5 @@ export const CountriesApi = {
     }
   },
 };
+
+export { CountriesApi };

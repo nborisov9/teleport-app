@@ -55,7 +55,6 @@ const CitiesAll: React.FC = () => {
       </SelectBlockWrapper>
       <Container maxWidth="lg">
         <YandexMap
-          classes={classes}
           latitude={cityCoordsData.location.latlon.latitude}
           longitude={cityCoordsData.location.latlon.longitude}
         />

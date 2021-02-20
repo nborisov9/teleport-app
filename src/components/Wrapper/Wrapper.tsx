@@ -8,7 +8,6 @@ interface WrapperProps {
 
 const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   const classes = useHomeStyles();
-
   return <div className={classes.wrapper}>{children}</div>;
 };
 

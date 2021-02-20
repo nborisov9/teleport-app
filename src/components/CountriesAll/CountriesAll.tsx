@@ -8,13 +8,12 @@ import {
   selectCountryBasicData,
   selectCountrySalaryData,
 } from '../../store/countries/selectors';
-
-import { useHomeStyles } from '../../pages/Home/theme';
 import {
   clearCountryData,
   fetchCountries,
   fetchCountriesData,
 } from '../../store/countries/actions';
+import { useHomeStyles } from '../../pages/Home/theme';
 import CountriesListBlock from '../CountriesListBlock';
 import CountriesDataBlock from '../CountriesDataBlock';
 
