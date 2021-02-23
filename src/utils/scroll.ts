@@ -1,11 +1,18 @@
-const scrollElement = (ref: React.RefObject<HTMLUListElement>, operator: string) => {
-  if (ref.current) {
-    if (operator === 'increment') {
-      return (ref.current.scrollTop += 37);
+import { DECREMENT, INCREMENT } from '../helpers/constants';
+
+interface IScroll {
+  citiesUlRef: React.RefObject<any>;
+  citiesLiRef: React.RefObject<HTMLLIElement>;
+}
+
+const scrollElement = ({ citiesUlRef, citiesLiRef }: IScroll, operator: string) => {
+  if (citiesUlRef.current && citiesLiRef.current) {
+    if (operator === INCREMENT) {
+      return (citiesUlRef.current.scrollTop += citiesLiRef.current.clientHeight);
     }
 
-    if (operator === 'decrement') {
-      return (ref.current.scrollTop -= 37);
+    if (operator === DECREMENT) {
+      return (citiesUlRef.current.scrollTop -= citiesLiRef.current.clientHeight);
     }
   }
 };

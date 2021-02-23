@@ -8,7 +8,11 @@ import {
   SET_COUNTRY_DATA,
   CLEAR_COUNTRY_DATA,
   CLEAR_COUNTRIES_ITEMS,
+  TCountriesPayload,
+  ICountryPayload,
 } from './types';
+
+const hadnlePayload = (payload: TCountriesPayload): ICountryPayload => ({ payload });
 
 const fetchCountries = (continent: string) => (dispatch: Dispatch) => {
   CountriesApi.fetchCountriesName(continent)
@@ -17,25 +21,16 @@ const fetchCountries = (continent: string) => (dispatch: Dispatch) => {
 };
 
 const fetchCountriesData = (countryName: string) => async (dispatch: Dispatch) => {
-  try {
-    const { data: basicData } = await CountriesApi.getCountriesBasicInfo(countryName);
-    const { data: salaryData } = await CountriesApi.getCountriesSalariesInfo(countryName);
-    dispatch(setCountryData(basicData, salaryData.salaries));
-  } catch (e) {
-    throw Error(e);
-  }
+  CountriesApi.getCountriesData(countryName)
+    .then((data) => dispatch(setCountryData(data)))
+    .catch((e) => console.error(e));
 };
 
 const clearCountriesName = createAction(CLEAR_COUNTRIES_NAME);
 const clearCountryData = createAction(CLEAR_COUNTRY_DATA);
 const clearCountriesItems = createAction(CLEAR_COUNTRIES_ITEMS);
-const setCountryNames = createAction(SET_COUNTRY_NAMES, (payload) => ({ payload }));
-const setCountryData = createAction(SET_COUNTRY_DATA, (basicData, salaryData) => ({
-  payload: {
-    basicData,
-    salaryData,
-  },
-}));
+const setCountryNames = createAction(SET_COUNTRY_NAMES, hadnlePayload);
+const setCountryData = createAction(SET_COUNTRY_DATA, hadnlePayload);
 
 export {
   fetchCountries,

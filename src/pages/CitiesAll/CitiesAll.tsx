@@ -44,7 +44,13 @@ const CitiesAll: React.FC = () => {
   const cityNamesLoadingState = useSelector(selectCityNamesLoadingState);
   const cityDataLoadingState = useSelector(selectCityDataLoadingState);
 
-  if (!cityDataLoadingState || !cityNamesLoadingState) {
+  if (
+    !cityCoordsData ||
+    !cityBasicData ||
+    !cityScoreData ||
+    !cityDataLoadingState ||
+    !cityNamesLoadingState
+  ) {
     return <LoadingBlock size={60} marginTop={0} />;
   }
 

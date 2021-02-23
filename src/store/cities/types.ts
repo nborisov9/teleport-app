@@ -14,6 +14,8 @@ type IBasicData = {
   full_name: string;
 };
 
+type TImageData = string;
+
 type ICoordsData = {
   location: {
     latlon: {
@@ -25,11 +27,11 @@ type ICoordsData = {
 };
 
 interface ICityData {
-  basicData: IBasicData;
-  coordsData: ICoordsData;
-  imageData: string;
+  basicData: IBasicData | null;
+  coordsData: ICoordsData | null;
+  imageData: TImageData;
   salaryData: Array<ICitySalaryData>;
-  scoreData: IScoreData;
+  scoreData: IScoreData | null;
   isLoaded: boolean;
 }
 
@@ -62,7 +64,9 @@ interface ICities {
   };
 }
 
-type TCitiesPayloads = ICityName | IBasicData | ICoordsData | string | IScoreData | ICitySalaryData;
+type TCitiesPayloads = Array<
+  IBasicData & ICoordsData & TImageData & IScoreData & ICitySalaryData[]
+>;
 
 interface ICityPayload {
   payload: TCitiesPayloads;

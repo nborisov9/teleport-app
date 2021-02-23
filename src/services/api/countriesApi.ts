@@ -1,32 +1,30 @@
 import axios from 'axios';
 
-import { ICountriesDataName } from '../../store/countries/types';
+import { filterCountryData } from '../../utils/countriesApi';
 
 const CountriesApi = {
   async fetchCountriesName(continent: string) {
     return axios.get(`https://api.teleport.org/api/continents/geonames:${continent}/countries/`);
   },
 
-  async getCountriesBasicInfo(countriesName: string) {
-    try {
-      const { data: allCountries } = await axios.get(process.env.REACT_APP_COUNTRIES!);
-      const currentCountryHref = allCountries._links['country:items'].filter(
-        ({ name }: ICountriesDataName) => name === countriesName,
-      );
-
-      return await axios.get(currentCountryHref[0].href);
-    } catch (e) {
-      throw Error(e);
-    }
+  async fetchCountriesBasicInfo(countriesName: string) {
+    return await axios
+      .get(process.env.REACT_APP_COUNTRIES!)
+      .then(({ data }) => filterCountryData(data._links['country:items'], countriesName))
+      .then((currentCountryHref) => axios.get(currentCountryHref[0].href));
   },
 
-  async getCountriesSalariesInfo(countriesName: string) {
-    try {
-      const { data: contryData } = await CountriesApi.getCountriesBasicInfo(countriesName);
-      return await axios.get(contryData._links['country:salaries'].href);
-    } catch (e) {
-      throw Error(e);
-    }
+  async fetchCountriesSalariesInfo(countriesName: string) {
+    return CountriesApi.fetchCountriesBasicInfo(countriesName).then(({ data }) =>
+      axios.get(data._links['country:salaries'].href),
+    );
+  },
+
+  async getCountriesData(countriesName: string) {
+    return Promise.all([
+      CountriesApi.fetchCountriesBasicInfo(countriesName).then(({ data }) => data),
+      CountriesApi.fetchCountriesSalariesInfo(countriesName).then(({ data }) => data.salaries),
+    ]);
   },
 };
 

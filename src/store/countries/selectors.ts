@@ -6,7 +6,7 @@ const selectCountries = (state: RootState): ICountries => state.countries;
 const selectCountriesDataName = (state: RootState): ICountriesDataName[] =>
   selectCountries(state).items.countries;
 
-const selectCountryBasicData = (state: RootState): ICountryBasicData =>
+const selectCountryBasicData = (state: RootState): ICountryBasicData | null =>
   selectCountries(state).items.countryData.basicData;
 
 const selectCountrySalaryData = (state: RootState): ICountrySalaryData[] =>

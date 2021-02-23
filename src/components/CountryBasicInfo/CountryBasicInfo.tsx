@@ -1,16 +1,22 @@
 import { Typography } from '@material-ui/core';
+import React from 'react';
 
 import { useHomeStyles } from '../../pages/Home/theme';
 import { ICountryBasicData } from '../../store/countries/types';
 import { getCountryData } from '../../utils/countryData';
+import { LoadingBlock } from '../LoadingBlock';
 
 interface CountryBasicInfoProps {
-  countriesBasicData: ICountryBasicData;
+  countriesBasicData: ICountryBasicData | null;
 }
 
 export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({ countriesBasicData }) => {
   const classes = useHomeStyles();
-  const { dataCountry } = getCountryData(countriesBasicData, classes);
+  const contryData = getCountryData(countriesBasicData, classes);
+
+  if (!contryData) {
+    return <LoadingBlock size={60} />;
+  }
 
   return (
     <>
@@ -18,7 +24,7 @@ export const CountryBasicInfo: React.FC<CountryBasicInfoProps> = ({ countriesBas
         basic info
       </Typography>
       <div className={classes.countriesInfoWrapper}>
-        {dataCountry.map(({ title, icon, dataInfo }) => (
+        {contryData.map(({ title, icon, dataInfo }) => (
           <div className={classes.countryInfoName} key={title}>
             <span>
               {icon}

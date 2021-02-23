@@ -55,7 +55,7 @@ export const CountriesAll: React.FC = () => {
     dispatch(fetchCountriesData(countryName));
   };
 
-  if (!countries || !countriesBasicData || !countriesSalaryData) {
+  if (!countries) {
     return null;
   }
 

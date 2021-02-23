@@ -13,7 +13,7 @@ import { ICountryBasicData, ICountrySalaryData } from '../../store/countries/typ
 
 interface CountriesDataBlockProps {
   viewCountryData: boolean;
-  countriesBasicData: ICountryBasicData;
+  countriesBasicData: ICountryBasicData | null;
   countriesSalaryData: ICountrySalaryData[];
 }
 

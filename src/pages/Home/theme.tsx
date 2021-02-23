@@ -54,6 +54,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     border: '1px solid #ccc',
     boxShadow: '5px 5px 8px 0px rgba(34, 60, 80, 0.2)',
     '& li': {
+      height: 36,
       '&:hover': {
         background: 'rgba(184, 184, 184, 0.2)',
       },

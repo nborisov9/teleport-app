@@ -5,16 +5,16 @@ const selectCities = (state: RootState): ICities => state.cities;
 
 const selectCityNames = (state: RootState): ICityName[] => selectCities(state).items.cityNames;
 
-const selectCityBasicData = (state: RootState): IBasicData =>
+const selectCityBasicData = (state: RootState): IBasicData | null =>
   selectCities(state).items.cityData.basicData;
 
-const selectCityCoordsData = (state: RootState): ICoordsData =>
+const selectCityCoordsData = (state: RootState): ICoordsData | null =>
   selectCities(state).items.cityData.coordsData;
 
 const selectCityImageData = (state: RootState): string =>
   selectCities(state).items.cityData.imageData;
 
-const selectCityScoreData = (state: RootState): IScoreData =>
+const selectCityScoreData = (state: RootState): IScoreData | null =>
   selectCities(state).items.cityData.scoreData;
 
 const selectCitySalaryData = (state: RootState): ICitySalaryData[] =>

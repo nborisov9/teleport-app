@@ -9,7 +9,7 @@ import { SearchTextField } from '../SearchTextField';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { fetchCities } from '../../store/cities/actions';
 import { selectCityNames } from '../../store/cities/selectors';
-import { ARROW_DOWN, ARROW_UP, DECREMENT, ENTER, INCREMENT } from '../../helpers/consts';
+import { ARROW_DOWN, ARROW_UP, DECREMENT, ENTER, INCREMENT } from '../../helpers/constants';
 import { scrollElement } from '../../utils/scroll';
 import { LoadingBlock } from '../LoadingBlock';
 
@@ -25,7 +25,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const [currentCursor, setCurrentCursor] = React.useState<number>(0);
 
   const inputRef = React.useRef<HTMLDivElement>(null);
-  const citiesListRef = React.useRef<HTMLUListElement>(null);
+  const citiesUlRef = React.useRef<HTMLUListElement>(null);
+  const citiesLiRef = React.useRef<HTMLLIElement>(null);
 
   const classes = useHomeStyles();
   const dispatch = useDispatch();
@@ -67,11 +68,11 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
   const keyDownHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === ARROW_DOWN && currentCursor < filterCitiesList.length - 1) {
       setCurrentCursor((prevState) => prevState + 1);
-      scrollElement(citiesListRef, INCREMENT);
+      scrollElement({ citiesUlRef, citiesLiRef }, INCREMENT);
     }
     if (e.key === ARROW_UP && currentCursor > 0) {
       setCurrentCursor((prevState) => prevState - 1);
-      scrollElement(citiesListRef, DECREMENT);
+      scrollElement({ citiesUlRef, citiesLiRef }, DECREMENT);
     }
   };
 
@@ -124,7 +125,8 @@ export const SearchInput: React.FC<SearchInputProps> = ({ placeHolder }) => {
         fullWidth
       />
       <CitiesList
-        referenceNode={citiesListRef}
+        referenceUlNode={citiesUlRef}
+        referenceLiNode={citiesLiRef}
         listNotFound={listNotFound}
         filterList={filterCitiesList}
         cursor={currentCursor}

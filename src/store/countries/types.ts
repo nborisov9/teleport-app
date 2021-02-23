@@ -26,12 +26,18 @@ interface ICountries {
   items: {
     countries: Array<ICountriesDataName>;
     countryData: {
-      basicData: ICountryBasicData;
+      basicData: ICountryBasicData | null;
       salaryData: Array<ICountrySalaryData>;
       isLoaded: boolean;
     };
   };
   isLoaded: boolean;
+}
+
+type TCountriesPayload = Array<ICountryBasicData & ICountrySalaryData[]>;
+
+interface ICountryPayload {
+  payload: TCountriesPayload;
 }
 
 const SET_COUNTRY_NAMES: string = 'countries/SET_COUNTRY_NAMES';
@@ -48,4 +54,11 @@ export {
   CLEAR_COUNTRIES_ITEMS,
 };
 
-export type { ICountriesDataName, ICountryBasicData, ICountrySalaryData, ICountries };
+export type {
+  ICountriesDataName,
+  ICountryBasicData,
+  ICountrySalaryData,
+  ICountries,
+  TCountriesPayload,
+  ICountryPayload,
+};

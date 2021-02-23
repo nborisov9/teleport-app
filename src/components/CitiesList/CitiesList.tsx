@@ -6,11 +6,12 @@ import SadSmileIcon from '@material-ui/icons/SentimentDissatisfied';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { ICityName } from '../../store/cities/types';
 import { useKeyPress } from '../../utils/customHooks';
-import { ENTER } from '../../helpers/consts';
-import { checkClassActive } from '../../utils/helperFunctions';
+import { ENTER } from '../../helpers/constants';
+import { checkClassActive } from '../../utils/citiesList';
 
 interface ICitiesListProps {
-  referenceNode: React.RefObject<HTMLUListElement>;
+  referenceUlNode: React.RefObject<HTMLUListElement>;
+  referenceLiNode: React.RefObject<HTMLLIElement>;
   citiesList: boolean;
   listNotFound: boolean;
   cursor: number;
@@ -19,7 +20,8 @@ interface ICitiesListProps {
 }
 
 const CitiesList: React.FC<ICitiesListProps> = ({
-  referenceNode,
+  referenceUlNode,
+  referenceLiNode,
   listNotFound,
   citiesList,
   filterList,
@@ -52,11 +54,12 @@ const CitiesList: React.FC<ICitiesListProps> = ({
   }
 
   return (
-    <ul className={classes.citiesListWrapper} ref={referenceNode}>
+    <ul className={classes.citiesListWrapper} ref={referenceUlNode}>
       {filterList.map(({ name }, index) => (
         <li
           key={name}
-          className={checkClassActive(index, cursor, classes)}
+          ref={referenceLiNode}
+          className={checkClassActive({ index, cursor, classes })}
           onClick={() => setTextHandler(name)}>
           {name}
         </li>
