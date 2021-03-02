@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { Provider } from 'react-redux';
 
 import { store } from './store/store';
-import Header from './components/Header';
-import Home from './pages/Home';
-import CitiesAll from './pages/CitiesAll';
-import Footer from './components/Footer';
-import Wrapper from './components/Wrapper';
+import Header from './components/MainPage/Header';
+import Countries from './pages/Countries';
+import MyCities from './pages/MyCities';
+import Footer from './components/MainPage/Footer';
+import Wrapper from './components/MainPage/Wrapper';
 
 import './app.scss';
 
@@ -18,9 +18,9 @@ const App: React.FC = (): React.ReactElement => {
         <Wrapper>
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/countries" component={Home} />
-            <Route path="/citiesAll/:city" component={CitiesAll} />
+            <Route exact path="/" component={Countries} />
+            <Route path="/countries" component={Countries} />
+            <Route path="/mycities/:city" component={MyCities} />
             <Redirect to="/" />
           </Switch>
           <Footer />

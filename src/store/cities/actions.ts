@@ -29,3 +29,15 @@ const setCityNames = createAction(SET_CITY_NAMES, handlePayload);
 const setCityData = createAction(SET_CITY_DATA, handlePayload);
 
 export { setCityNames, setCityData, fetchCities, fetchCitiesData, clearCityData };
+
+// ==============================================================================
+// example code with createAsyncThunk
+// const fetchCities = createAsyncThunk(SET_CITY_NAMES, (_, thunkAPI) => {
+//   CitiesApi.fetchCityNames().then(({ data }) =>
+//     thunkAPI.dispatch(setCityNames(data._links['ua:item'])),
+//   );
+// });
+
+// const fetchCitiesData = createAsyncThunk(SET_CITY_DATA, (city: string, thunkAPI) => {
+//   CitiesApi.getCitiesData(city).then((data) => thunkAPI.dispatch(setCityData(data)));
+// });

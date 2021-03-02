@@ -5,7 +5,7 @@ import IconPublic from '@material-ui/icons/Public';
 import IconTitle from '@material-ui/icons/Title';
 
 import { ICountryBasicData } from '../store/countries/types';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/Countries/theme';
 
 interface IBasicData {
   title: string;

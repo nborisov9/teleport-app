@@ -1,4 +1,4 @@
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../pages/Countries/theme';
 
 interface ICheckClassActive {
   index: number;
