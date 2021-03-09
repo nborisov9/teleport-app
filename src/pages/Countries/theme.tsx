@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/';
+import { MAIN_BLUE } from '../../helpers/constants';
 
 export const useHomeStyles = makeStyles((theme) => ({
   wrapper: {
@@ -7,23 +8,23 @@ export const useHomeStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     minHeight: '100vh',
   },
-  headerWrapper: {
-    background:
-      'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
+  headerWrapper: {},
+  headerTopWrapper: {
+    background: '#fff',
     display: 'flex',
-    padding: '10px 0',
-    boxShadow: '0px 3px 8px 0px rgba(34, 60, 80, 0.2)',
+    padding: '11px 0',
+    boxShadow: '0px 1px 1px 0px rgba(34, 60, 80, 0.2)',
   },
-  headerContainer: {
+  headerTopContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  headerSearch: {
+  headerTopSearch: {
     flex: '1',
     fontFamily: 'Ubuntu',
   },
-  headerLogo: {
+  headerTopLogo: {
     flex: '1',
     textAlign: 'center',
     cursor: 'pointer',
@@ -33,6 +34,16 @@ export const useHomeStyles = makeStyles((theme) => ({
     '& a': {
       color: '#000',
     },
+  },
+  headerBottomWrapper: {
+    height: 28,
+    display: 'flex',
+    boxShadow: '0px 1px 1px 0px rgba(34, 60, 80, 0.2)',
+  },
+  headerBottomContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   inputSearchWrapper: {
     position: 'relative',
@@ -88,33 +99,65 @@ export const useHomeStyles = makeStyles((theme) => ({
       margin: '0 10px 0 0',
     },
   },
-  headerAllCitiesLink: {
+  headerTopMyCitiesLink: {
     textAlign: 'right',
     flex: '1',
     fontFamily: 'Ubuntu',
     fontSize: 26,
     cursor: 'pointer',
+
     '&:active': {
       transform: 'translateY(2px)',
     },
 
     '& a': {
       color: '#000',
+      '&:hover': {
+        color: MAIN_BLUE,
+      },
     },
   },
-  worldMapTitle: {
-    margin: '85px 0 30px 0',
+  worldWrapper: {
+    position: 'relative',
     display: 'flex',
-    justifyContent: 'center',
-    fontFamily: 'Ubuntu',
+    flex: '1 0 auto',
+    flexDirection: 'column',
+  },
+
+  worldMapTitle: {
+    opacity: 0,
+    margin: '65px 0 30px 0',
+    fontFamily: 'Kanit',
     textTransform: 'uppercase',
     letterSpacing: '3px',
-    color: 'rgba(29, 29, 29, 1)',
+    display: 'flex',
+    justifyContent: 'center',
+    transition: 'all .2s linear',
+    fontSize: 40,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+  },
+  visibleWorldMapTitle: {
+    opacity: 1,
+    margin: '65px 0 30px 0',
+    fontFamily: 'Kanit',
+    textTransform: 'uppercase',
+    letterSpacing: '3px',
+    display: 'flex',
+    justifyContent: 'center',
+    transition: 'all .2s linear',
+    fontSize: 40,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
   },
   worldMapWrapper: {
-    marginTop: 25,
     display: 'flex',
     flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     flex: '1 0 auto',
   },
@@ -187,15 +230,18 @@ export const useHomeStyles = makeStyles((theme) => ({
     },
   },
   buttonGoBack: {
+    fontFamily: 'Kanit',
     borderRadius: 20,
     padding: '5px 30px',
-    marginBottom: 30,
+    marginBottom: 25,
     background: theme.palette.background.default,
   },
   countriesAllTitle: {
+    fontFamily: 'Kanit',
     textTransform: 'uppercase',
     fontWeight: 600,
     marginBottom: 15,
+    color: MAIN_BLUE,
   },
   countriesAllSelectTitle: {
     display: 'flex',
@@ -282,11 +328,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   loadingBlockCircle: {
-    color: 'rgb(0, 103, 238)',
+    color: MAIN_BLUE,
   },
   footerWrapper: {
-    background:
-      'linear-gradient(90deg, rgba(204,204,204,1) 0%, rgba(238,238,238,1) 40%, rgba(204,204,204,1) 100%)',
+    background: '#fff',
     boxShadow: '0px -3px 8px 0px rgba(34, 60, 80, 0.2)',
     height: 50,
     display: 'flex',
@@ -298,7 +343,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     color: 'rgba(0, 0, 0, 1)',
     '&:hover': {
-      color: 'rgb(19, 163, 247)',
+      color: MAIN_BLUE,
     },
   },
 }));

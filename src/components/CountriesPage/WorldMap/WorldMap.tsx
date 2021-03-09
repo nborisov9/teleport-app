@@ -10,9 +10,18 @@ import AsiaSVG from './continents/AsiaSVG';
 import EuropeSVG from './continents/EuropeSVG';
 import AfricaSVG from './continents/AfricaSVG';
 import ContinentsWrapperSVG from './continents/ContinentsWrapperSVG';
+import { DARK_YELLOW, LIGHT_BLUE, LIGHT_GREEN, ORGANE, RED } from '../../../helpers/constants';
 
-export const WorldMap: React.FC = () => {
-  const [continentTitle, setContintentTitle] = React.useState<string>('select contintent');
+interface IContitnentTitle {
+  text: string;
+  style: React.CSSProperties;
+}
+
+const continentState: IContitnentTitle = { text: '', style: { color: '' } };
+
+const WorldMap: React.FC = () => {
+  const [continentInfo, setContintentInfo] = React.useState<IContitnentTitle>(continentState);
+  const [isVisibleTitle, isSetVisibleTitle] = React.useState<boolean>(false);
 
   const classes = useHomeStyles();
 
@@ -25,25 +34,32 @@ export const WorldMap: React.FC = () => {
   const handleMouseOver = (event: MouseEvent) => {
     const path = event.composedPath();
     if (NARef.current && path.includes(NARef.current)) {
-      setContintentTitle('NORTH AMERICA');
+      setContintentInfo({ text: 'NORTH AMERICA', style: { color: LIGHT_BLUE } });
+      isSetVisibleTitle(true);
       return;
     }
     if (SARef.current && path.includes(SARef.current)) {
-      setContintentTitle('SORTH AMERICA');
+      setContintentInfo({ text: 'SORTH AMERICA', style: { color: ORGANE } });
+      isSetVisibleTitle(true);
       return;
     }
     if (ASRef.current && path.includes(ASRef.current)) {
-      setContintentTitle('ASIA');
+      setContintentInfo({ text: 'ASIA', style: { color: LIGHT_GREEN } });
+      isSetVisibleTitle(true);
       return;
     }
     if (EURef.current && path.includes(EURef.current)) {
-      setContintentTitle('EUROPE');
+      setContintentInfo({ text: 'EUROPE', style: { color: DARK_YELLOW } });
+      isSetVisibleTitle(true);
       return;
     }
     if (AFRef.current && path.includes(AFRef.current)) {
-      setContintentTitle('AFRICA');
+      setContintentInfo({ text: 'AFRICA', style: { color: RED } });
+      isSetVisibleTitle(true);
       return;
     }
+
+    isSetVisibleTitle(false);
   };
 
   React.useEffect(() => {
@@ -52,28 +68,36 @@ export const WorldMap: React.FC = () => {
   }, []);
 
   return (
-    <div className={classes.worldMapWrapper}>
-      <Typography variant="h5" className={classes.worldMapTitle}>
-        {continentTitle}
+    <div className={classes.worldWrapper}>
+      <Typography
+        variant="h5"
+        className={isVisibleTitle ? classes.visibleWorldMapTitle : classes.worldMapTitle}
+        style={continentInfo.style}>
+        {continentInfo.text}
       </Typography>
-      <ContinentsWrapperSVG>
-        <OutlineSVG />
-        <Link to="/countries/SA">
-          <SouthAmericaSVG referenceNode={SARef} />
-        </Link>
-        <Link to="/countries/NA">
-          <NorthAmericaSVG referenceNode={NARef} />
-        </Link>
-        <Link to="/countries/AS">
-          <AsiaSVG referenceNode={ASRef} />
-        </Link>
-        <Link to="/countries/EU">
-          <EuropeSVG referenceNode={EURef} />
-        </Link>
-        <Link to="/countries/AF">
-          <AfricaSVG referenceNode={AFRef} />
-        </Link>
-      </ContinentsWrapperSVG>
+
+      <div className={classes.worldMapWrapper}>
+        <ContinentsWrapperSVG>
+          <OutlineSVG />
+          <Link to="/countries/SA">
+            <SouthAmericaSVG referenceNode={SARef} />
+          </Link>
+          <Link to="/countries/NA">
+            <NorthAmericaSVG referenceNode={NARef} />
+          </Link>
+          <Link to="/countries/AS">
+            <AsiaSVG referenceNode={ASRef} />
+          </Link>
+          <Link to="/countries/EU">
+            <EuropeSVG referenceNode={EURef} />
+          </Link>
+          <Link to="/countries/AF">
+            <AfricaSVG referenceNode={AFRef} />
+          </Link>
+        </ContinentsWrapperSVG>
+      </div>
     </div>
   );
 };
+
+export default WorldMap;

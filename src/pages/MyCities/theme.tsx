@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core/';
 
-export const useMyCitiesStyles = makeStyles((theme) => ({
+export const useMyCitiesStyles = makeStyles(() => ({
   myCitiesWrapper: {
     paddingBottom: 50,
+    marginTop: 20,
   },
 
   myCitiesSelectWrapper: {
@@ -20,6 +21,8 @@ export const useMyCitiesStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  myCitiesLoader: {},
 
   citiesSalaryInfo: {
     marginTop: 80,

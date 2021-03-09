@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import { CountriesAll } from '../../components/CountriesPage/CountriesAll';
-import { WorldMap } from '../../components/CountriesPage/WorldMap';
+import CountriesAll from '../../components/CountriesPage/CountriesAll';
+import WorldMap from '../../components/CountriesPage/WorldMap';
 
 const Home: React.FC = () => (
   <>

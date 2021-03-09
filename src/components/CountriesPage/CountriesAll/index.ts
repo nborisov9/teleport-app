@@ -1,3 +1,3 @@
-import { CountriesAll } from './CountriesAll';
+import CountriesAll from './CountriesAll';
 
-export { CountriesAll };
+export default CountriesAll;

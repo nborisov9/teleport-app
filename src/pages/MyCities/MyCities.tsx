@@ -51,6 +51,7 @@ const MyCities: React.FC = () => {
 
   const latitude = cityCoordsData && cityCoordsData.location.latlon.latitude;
   const longitude = cityCoordsData && cityCoordsData.location.latlon.longitude;
+  const salaryData = citySalaryData.slice(39);
 
   if (
     !cityCoordsData ||
@@ -76,7 +77,7 @@ const MyCities: React.FC = () => {
         />
         <BarGraphBlock cityScoreData={cityScoreData.categories} />
         <div className={classes.citiesSalaryInfo}>
-          <CitiesSalaryInfo citiesSalaryData={citySalaryData.slice(39)} />
+          <CitiesSalaryInfo citiesSalaryData={salaryData} />
         </div>
       </Container>
     </div>

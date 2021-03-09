@@ -10,6 +10,8 @@ import {
   selectCountriesLoadingState,
 } from '../../../store/countries/selectors';
 import { LoadingBlock } from '../../MainPage/LoadingBlock';
+import { getColorStyle } from '../../../utils/countriesListBlock';
+import { MAIN_BLUE } from '../../../helpers/constants';
 
 interface CountriesListBlockProps {
   continentName: string;
@@ -33,7 +35,7 @@ const CountriesListBlock: React.FC<CountriesListBlockProps> = ({
     dispatch(clearCountriesName());
   };
 
-  const activeStyleLink: React.CSSProperties = { fontWeight: 600, color: 'rgb(0, 103, 238)' };
+  const activeStyleLink: React.CSSProperties = { fontWeight: 600, color: MAIN_BLUE };
 
   return (
     <Grid item xs>
@@ -41,7 +43,7 @@ const CountriesListBlock: React.FC<CountriesListBlockProps> = ({
         go back
       </Button>
       <Typography variant="h5" className={classes.countriesAllTitle}>
-        countries - {continentName}
+        countries - <span style={getColorStyle(continentName)}>{continentName}</span>
       </Typography>
       {!loadingState ? (
         <LoadingBlock size={60} marginTop={170} />

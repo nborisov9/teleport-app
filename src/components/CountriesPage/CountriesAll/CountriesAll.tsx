@@ -18,7 +18,7 @@ interface IParams {
   country: string;
 }
 
-export const CountriesAll: React.FC = () => {
+const CountriesAll: React.FC = () => {
   const [viewCountryData, setViewCountryData] = React.useState<boolean>(false);
 
   const classes = useHomeStyles();
@@ -65,3 +65,5 @@ export const CountriesAll: React.FC = () => {
     </Container>
   );
 };
+
+export default CountriesAll;

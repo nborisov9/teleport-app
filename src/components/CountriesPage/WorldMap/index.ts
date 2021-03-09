@@ -1,3 +1,3 @@
-import { WorldMap } from './WorldMap';
+import WorldMap from './WorldMap';
 
-export { WorldMap };
+export default WorldMap;
